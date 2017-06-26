@@ -30,6 +30,7 @@ data = list(df.index.strftime('%d/%m'))
 
 @app.route('/')
 @app.route('/index')
+@app.route('/lme')
 def index(chartID='chart_ID', chart_type='line', chart_height=350):
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
     series = [{"name": 'Cobre', "data": cobre},
@@ -44,6 +45,16 @@ def index(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
     return render_template('index.html', chartID=chartID, chart=chart,
+                           series=series, title=title, xAxis=xAxis, yAxis=yAxis)
+
+@app.route('/lme/cobre')
+def lme_cobre(chartID='chart_ID', chart_type='line', chart_height=350):
+    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
+    series = [{"name": 'Cobre', "data": cobre}]
+    title = {"text": 'Cobre • Cotação LME'}
+    xAxis = {"categories": data, "crosshair": 'true'}
+    yAxis = {"title": {"text": 'Valor'}}
+    return render_template('lme.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis, yAxis=yAxis)
 
 

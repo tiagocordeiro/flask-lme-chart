@@ -12,14 +12,12 @@ $(document).ready(function() {
             crosshairs: true,
             pointFormat: '{series.name}: <b>{point.y:,.2f}</b><br/>'
         },
+        legend: {
+        enabled: false
+    },
 		series: series
 	});
 });
-
-//$('#myTabs a').click(function (e) {
-//  e.preventDefault()
-//  $(this).tab('show')
-//})
 
 Highcharts.setOptions({
     lang: {
@@ -27,3 +25,8 @@ Highcharts.setOptions({
         thousandsSeparator: '.'
     }
 });
+
+//$('#myTabs a').click(function (e) {
+//  e.preventDefault()
+//  $(this).tab('show')
+//})
