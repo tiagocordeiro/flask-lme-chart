@@ -14,6 +14,7 @@ $(document).ready(function() {
         },
 		series: series
 	});
+	$(".button-collapse").sideNav();
 });
 
 //$('#myTabs a').click(function (e) {

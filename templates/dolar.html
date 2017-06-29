@@ -26,18 +26,28 @@
 
 	<body>
 		<nav>
-		<div class="nav-wrapper">
-		  <a href="/lme" class="brand-logo">Cotação LME</a>
-		  <ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a href="cobre">Cobre</a></li>
-			<li><a href="zinco">Zinco</a></li>
-			<li><a href="aluminio">Alumínio</a></li>
-			<li><a href="chumbo">Chumbo</a></li>
-			<li><a href="estanho">Estanho</a></li>
-			<li><a href="niquel">Níquel</a></li>
-			<li class="active"><a href="dolar">Dolar</a></li>
-		  </ul>
-		</div>
+            <div class="nav-wrapper">
+              <a href="/lme" class="brand-logo">Cotação LME</a>
+              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="cobre">Cobre</a></li>
+                <li><a href="zinco">Zinco</a></li>
+                <li><a href="aluminio">Alumínio</a></li>
+                <li><a href="chumbo">Chumbo</a></li>
+                <li><a href="estanho">Estanho</a></li>
+                <li><a href="niquel">Níquel</a></li>
+                <li class="active"><a href="dolar">Dolar</a></li>
+              </ul>
+              <ul class="side-nav" id="mobile-demo">
+                <li><a href="cobre">Cobre</a></li>
+                <li><a href="zinco">Zinco</a></li>
+                <li><a href="aluminio">Alumínio</a></li>
+                <li><a href="chumbo">Chumbo</a></li>
+                <li><a href="estanho">Estanho</a></li>
+                <li><a href="niquel">Níquel</a></li>
+                <li class="active"><a href="dolar">Dolar</a></li>
+              </ul>
+            </div>
 		</nav>
 		<div id={{ chartID|safe }} class="chart" style="width: 100%"></div>
 		<script>
@@ -48,8 +58,9 @@
 			var yAxis = {{ yAxis|safe }}
 			var chart = {{ chart|safe }}
 		</script>
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+			<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 			<script src="https://code.highcharts.com/highcharts.js"></script>
 			<script src="../static/js/lme.js"></script>
+			<script src="../static/js/materialize.min.js"></script>
 	</body>
 </html>

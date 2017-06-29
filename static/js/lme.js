@@ -17,7 +17,9 @@ $(document).ready(function() {
     },
 		series: series
 	});
+	$(".button-collapse").sideNav();
 });
+
 
 Highcharts.setOptions({
     lang: {
