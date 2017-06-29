@@ -27,23 +27,19 @@
 	<body>
 		<nav>
 		<div class="nav-wrapper">
-		  <a href="#" class="brand-logo">Cotação LME</a>
+		  <a href="/lme" class="brand-logo">Cotação LME</a>
 		  <ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a href="lme/cobre">Cobre</a></li>
-			<li><a href="lme/zinco">Zinco</a></li>
-			<li><a href="lme/aluminio">Alumínio</a></li>
-			<li><a href="lme/chumbo">Chumbo</a></li>
-			<li><a href="lme/estanho">Estanho</a></li>
-			<li><a href="lme/niquel">Níquel</a></li>
-			<li><a href="lme/dolar">Dolar</a></li>
+			<li><a href="cobre">Cobre</a></li>
+			<li><a href="zinco">Zinco</a></li>
+			<li><a href="aluminio">Alumínio</a></li>
+			<li class="active"><a href="chumbo">Chumbo</a></li>
+			<li><a href="estanho">Estanho</a></li>
+			<li><a href="niquel">Níquel</a></li>
+			<li><a href="dolar">Dolar</a></li>
 		  </ul>
 		</div>
 		</nav>
 		<div id={{ chartID|safe }} class="chart" style="width: 100%"></div>
-		<div>
-
-
-		</div>
 		<script>
 			var chart_id = {{ chartID|safe }}
 			var series = {{ series|safe }}
@@ -52,9 +48,8 @@
 			var yAxis = {{ yAxis|safe }}
 			var chart = {{ chart|safe }}
 		</script>
-			<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 			<script src="https://code.highcharts.com/highcharts.js"></script>
-			<script src="../static/js/main.js"></script>
-			<script src="../static/js/materialize.min.js"></script>
+			<script src="../static/js/lme.js"></script>
 	</body>
 </html>

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt_BR">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="keywords" content="">
-		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description" content="Acompanhe a cotação da bolsa de metais de Londres">
+		<meta name="keywords" content="Cotação LME,London Metal Exchange">
+		<meta name="author" content="Mulher Gorila">
 		<meta charset="utf-8">
 
-		<!-- <link href="../static/css/main.css" rel="stylesheet" type="text/css" /> -->
+		<!--Import Google Icon Font-->
+      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+		 <link href="../static/css/materialize.min.css" rel="stylesheet" type="text/css" media="screen,projection"/>
 
 		<!-- SUPPORT FOR IE6-8 OF HTML5 ELEMENTS -->
 		<!--[if lt IE 9]>
@@ -21,7 +25,21 @@
 	</head>
 
 	<body>
-		<div id={{ chartID|safe }} class="chart" style="width: 100%"></div>
+		<nav>
+		<div class="nav-wrapper">
+		  <a href="#" class="brand-logo">Cotação LME</a>
+		  <ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li><a href="cobre">Cobre</a></li>
+			<li><a href="zinco">Zinco</a></li>
+			<li><a href="aluminio">Alumínio</a></li>
+			<li><a href="chumbo">Chumbo</a></li>
+			<li><a href="estanho">Estanho</a></li>
+			<li><a href="niquel">Níquel</a></li>
+			<li><a href="dolar">Dolar</a></li>
+		  </ul>
+		</div>
+		</nav>
+        <div id={{ chartID|safe }} class="chart" style="width: 100%"></div>
 		<script>
 			var chart_id = {{ chartID|safe }}
 			var series = {{ series|safe }}
