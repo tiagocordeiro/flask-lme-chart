@@ -14,7 +14,7 @@ $(document).ready(function() {
         },
         legend: {
         enabled: false
-    },
+        },
 		series: series
 	});
 	$(".button-collapse").sideNav();

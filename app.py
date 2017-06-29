@@ -109,7 +109,7 @@ def lme_niquel(chartID='chart_ID', chart_type='line', chart_height=350):
     series = [{"name": 'Níquel', "data": niquel}]
     title = {"text": 'Níquel'}
     xAxis = {"categories": data, "crosshair": 'true'}
-    yAxis = {"title": {"text": 'Valor'}}
+    yAxis = {"title": {"text": 'Valor em USD por tonelada'}}
     return render_template('niquel.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis, yAxis=yAxis)
 
