@@ -29,16 +29,19 @@ def cotacaoAtualizada():
     cnx = db.connect('lme.db')
 
     # Parametros de inicio e fim do periodo pode ser usado
-    # now = datetime.now()
-    # periodo = now - timedelta(days=120)
+    now = datetime.now()
+    periodo = now - timedelta(weeks=4)
     #
     # start_date = periodo.strftime("%Y-%m-%d"),
     # end_date = now.strftime("%Y-%m-%d")
 
     merged_data = quandl.get(["LME/PR_CU.2", "LME/PR_ZI.2", "LME/PR_AL.2",
                               "LME/PR_PB.2", "LME/PR_TN.2", "LME/PR_NI.2",
-                              "CURRFX/USDBRL.1"], start_date="2012-01-03",
-                             returns="pandas")
+                              "CURRFX/USDBRL.1"],
+                             start_date=periodo,
+                             end_date = now,
+                             returns="pandas"
+                             )
 
     merged_data.columns = ['Cobre', 'Zinco', 'Aluminio', 'Chumbo',
                            'Estanho', 'Niquel', 'Dolar']
