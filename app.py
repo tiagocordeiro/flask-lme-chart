@@ -125,6 +125,11 @@ def lme_dolar(chartID='chart_ID', chart_type='line', chart_height=350):
                            series=series, title=title, xAxis=xAxis, yAxis=yAxis)
 
 
+@app.route('/lme/tabela')
+def mostra_tabela():
+    return render_template('mesclado.html')
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)

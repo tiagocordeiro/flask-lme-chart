@@ -312,7 +312,7 @@ def merge_html():
 
     print(mesclado.prettify())
 
-    fo = open('static/mesclado.html', "w")
+    fo = open('templates/mesclado.html', "w")
     fo.write(mesclado.prettify())
     fo.close()
 
