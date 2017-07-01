@@ -4,14 +4,14 @@ Flask lme
 Cotação London Metal Exchange com Flask
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: https://travis-ci.org/tiagocordeiro/lme.svg?branch=master
+.. image:: https://travis-ci.org/tiagocordeiro/flask-lme-chart.svg?branch=master
     :target: https://travis-ci.org/tiagocordeiro/flask-lme-chart
 
-.. image:: https://pyup.io/repos/github/tiagocordeiro/lme/shield.svg
+.. image:: https://pyup.io/repos/github/tiagocordeiro/flask-lme-chart/shield.svg
     :target: https://pyup.io/repos/github/tiagocordeiro/flask-lme-chart/
     :alt: Updates
 
-.. image:: https://pyup.io/repos/github/tiagocordeiro/lme/python-3-shield.svg
+.. image:: https://pyup.io/repos/github/tiagocordeiro/flask-lme-chart/python-3-shield.svg
     :target: https://pyup.io/repos/github/tiagocordeiro/flask-lme-chart/
     :alt: Python 3
 
