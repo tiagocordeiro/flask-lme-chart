@@ -42,12 +42,23 @@ def cotacaoAtualizada():
                              returns="pandas"
                              )
 
+    todo_periodo = quandl.get(["LME/PR_CU.2", "LME/PR_ZI.2", "LME/PR_AL.2",
+                               "LME/PR_PB.2", "LME/PR_TN.2", "LME/PR_NI.2",
+                               "CURRFX/USDBRL.1"], start_date="2012-01-03",
+                              returns="pandas")
+
+    todo_periodo.columns = ['Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                           'Estanho', 'Niquel', 'Dolar']
+
     merged_data.columns = ['Cobre', 'Zinco', 'Aluminio', 'Chumbo',
                            'Estanho', 'Niquel', 'Dolar']
 
+    todo_periodo.to_csv('static/todo-periodo.csv', encoding='utf-8')
+
     merged_data.to_csv('static/cotacao-atual.csv', encoding='utf-8')
 
-    merged_data.to_sql('cotacoes', cnx, if_exists='replace')
+    # merged_data.to_sql('cotacoes', cnx, if_exists='replace')
+    todo_periodo.to_sql('cotacoes', cnx, if_exists='replace')
 
     cnx.commit()
     print("Cotação atualizada...")
