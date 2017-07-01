@@ -8,7 +8,6 @@ import pandas as pd
 import sqlite3 as db
 import quandl
 
-
 pd.options.display.float_format = '{:,.2f}'.format
 
 pd.set_option('colheader_justify', 'right')
@@ -39,7 +38,7 @@ def cotacaoAtualizada():
                               "LME/PR_PB.2", "LME/PR_TN.2", "LME/PR_NI.2",
                               "CURRFX/USDBRL.1"],
                              start_date=periodo,
-                             end_date = now,
+                             end_date=now,
                              returns="pandas"
                              )
 
@@ -157,14 +156,14 @@ def cotacaoPeriodo(qt_semanas=4):
         # + str(semanas[i][0].strftime("%U")) + '.html', "w")
         fo = open('static/semana' + '{num:02d}'.format(num=i) + '.html', 'w')
         fo.write(df[semanas[i][0].strftime("%Y-%m-%d"):
-                    semanas[i][1].strftime("%Y-%m-%d")].to_html(
-                    classes=['semanal', 'table-striped', 'table-responsive']))
+        semanas[i][1].strftime("%Y-%m-%d")].to_html(
+            classes=['semanal', 'table-striped', 'table-responsive']))
         fo.close()
 
     # Salva HTML da Média Semanal
     for i in range(datas, 0, -1):
         media_semana = df[semanas[i][0].strftime("%Y-%m-%d"):
-                          semanas[i][1].strftime("%Y-%m-%d")]
+        semanas[i][1].strftime("%Y-%m-%d")]
         media_semana = pd.DataFrame(media_semana.mean())
         media_semana.rename(
             columns={0: 'Semana:' + semanas[i][0].strftime("%U")},

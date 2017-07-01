@@ -46,7 +46,9 @@ def index(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
     return render_template('index.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis, yAxis=yAxis)
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
+
 
 @app.route('/lme/cobre')
 def lme_cobre(chartID='chart_ID', chart_type='line', chart_height=350):
@@ -56,7 +58,8 @@ def lme_cobre(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
     return render_template('cobre.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis, yAxis=yAxis)
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
 
 
 @app.route('/lme/zinco')
@@ -67,7 +70,8 @@ def lme_zinco(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
     return render_template('zinco.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis, yAxis=yAxis)
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
 
 
 @app.route('/lme/aluminio')
@@ -78,7 +82,8 @@ def lme_aluminio(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
     return render_template('aluminio.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis, yAxis=yAxis)
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
 
 
 @app.route('/lme/chumbo')
@@ -89,7 +94,8 @@ def lme_chumbo(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
     return render_template('chumbo.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis, yAxis=yAxis)
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
 
 
 @app.route('/lme/estanho')
@@ -100,7 +106,8 @@ def lme_estanho(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
     return render_template('estanho.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis, yAxis=yAxis)
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
 
 
 @app.route('/lme/niquel')
@@ -111,7 +118,8 @@ def lme_niquel(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor em USD por tonelada'}}
     return render_template('niquel.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis, yAxis=yAxis)
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
 
 
 @app.route('/lme/dolar')
@@ -122,7 +130,8 @@ def lme_dolar(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
     return render_template('dolar.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis, yAxis=yAxis)
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
 
 
 @app.route('/lme/tabela')
