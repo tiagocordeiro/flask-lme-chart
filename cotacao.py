@@ -293,16 +293,6 @@ def merge_html():
 
     # mesclado = BeautifulSoup(htmls01 + htmls01m, 'html.parser')
 
-    print("/" * 80)
-
-    print(htmls01merged)
-
-    print("/" * 80)
-
-    print(mesclado.prettify())
-
-    print("/" * 80)
-
     mesclado.find_all('th')[0].string = 'Data'
 
     mesclado.find_all('tr')[1].string = ''
@@ -312,8 +302,6 @@ def merge_html():
     mesclado.find_all('tr')[19].string = ''
 
     mesclado.find_all('tr')[28].string = ''
-
-    print(mesclado.prettify())
 
     fo = open('templates/mesclado.html', "w")
     fo.write(mesclado.prettify())

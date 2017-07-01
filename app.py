@@ -130,6 +130,11 @@ def mostra_tabela():
     return render_template('mesclado.html')
 
 
+@app.route('/lme/periodo/<data_inicio>/<data_fim>')
+def mostra_periodo(data_inicio, data_fim):
+    return f'Cotação do perídodo: {data_inicio} até {data_fim}'
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
