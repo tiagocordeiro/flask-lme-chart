@@ -95,3 +95,16 @@ ENV/
 # Rope project settings
 .ropeproject
 
+.idea/
+lme.db
+static/mesclado.html
+static/semana01.html
+static/semana01media.html
+static/semana02.html
+static/semana02media.html
+static/semana03.html
+static/semana03media.html
+static/semana04.html
+static/semana04media.html
+templates/index-bkp.html
+templates/lme-bkp.html
