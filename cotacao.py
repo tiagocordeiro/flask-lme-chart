@@ -8,6 +8,8 @@ import pandas as pd
 import sqlite3 as db
 import quandl
 
+quandl.ApiConfig.api_key = os.environ.get('QUANDL_KEY')
+
 pd.options.display.float_format = '{:,.2f}'.format
 
 pd.set_option('colheader_justify', 'right')
