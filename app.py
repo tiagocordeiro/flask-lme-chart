@@ -204,6 +204,25 @@ def cotacao_completa(chartID='chart_ID', chart_type='line', chart_height=350):
                            yAxis=yAxis)
 
 
+@app.route('/lme/dashboard')
+def deshboard(chartID='chart_ID', chart_type='line', chart_height=350):
+    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
+    series = [{"name": 'Cobre', "data": cobre},
+              {"name": 'Zinco', "data": zinco, "visible": 'false'},
+              {"name": 'Alumínio', "data": aluminio, "visible": 'false'},
+              {"name": 'Chumbo', "data": chumbo, "visible": 'false'},
+              {"name": 'Estanho', "data": estanho, "visible": 'false'},
+              {"name": 'Níquel', "data": niquel, "visible": 'false'},
+              {"name": 'Dolar', "data": dolar, "visible": 'false'}
+              ]
+    title = {"text": 'Cotação LME'}
+    xAxis = {"categories": data, "crosshair": 'true'}
+    yAxis = {"title": {"text": 'Valor'}}
+    return render_template('dashboard.html', chartID=chartID, chart=chart,
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
