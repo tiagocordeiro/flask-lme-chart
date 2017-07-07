@@ -224,7 +224,7 @@ def merge_html():
 
     htmls01m = htmls01m.replace('<th></th>', '<th>Média</th>')
 
-    htmls01m = htmls01m.replace('<tr>', '<tr class="media">')
+    htmls01m = htmls01m.replace('<tr>', '<tr class="media" style="background-color: #d4c97e !important;">')
 
     htmls01 = htmls01.replace('</table>', '')
 
@@ -246,7 +246,7 @@ def merge_html():
 
     htmls02m = htmls02m.replace('<th></th>', '<th>Média</th>')
 
-    htmls02m = htmls02m.replace('<tr>', '<tr class="media">')
+    htmls02m = htmls02m.replace('<tr>', '<tr class="media" style="background-color: #d4c97e !important;">')
 
     htmls02 = htmls02.replace('</table>', '')
 
@@ -268,7 +268,7 @@ def merge_html():
 
     htmls03m = htmls03m.replace('<th></th>', '<th>Média</th>')
 
-    htmls03m = htmls03m.replace('<tr>', '<tr class="media">')
+    htmls03m = htmls03m.replace('<tr>', '<tr class="media" style="background-color: #d4c97e !important;">')
 
     htmls03 = htmls03.replace('</table>', '')
 
@@ -289,7 +289,7 @@ def merge_html():
 
     htmls04m = htmls04m.replace('<th></th>', '<th>Média</th>')
 
-    htmls04m = htmls04m.replace('<tr>', '<tr class="media">')
+    htmls04m = htmls04m.replace('<tr>', '<tr class="media" style="background-color: #d4c97e !important;">')
 
     htmls04 = htmls04.replace('</table>', '')
 

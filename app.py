@@ -178,11 +178,6 @@ def lme_dolar(chartID='chart_ID', chart_type='line', chart_height=350):
                            yAxis=yAxis)
 
 
-@app.route('/lme/tabela')
-def mostra_tabela():
-    return render_template('mesclado.html')
-
-
 @app.route('/lme/all')
 def cotacao_completa(chartID='chart_ID', chart_type='line', chart_height=350):
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
@@ -221,6 +216,11 @@ def deshboard(chartID='chart_ID', chart_type='line', chart_height=350):
     return render_template('dashboard.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis,
                            yAxis=yAxis)
+
+
+@app.route('/lme/tabela')
+def mostra_tabela():
+    return render_template('mesclado.html')
 
 
 if __name__ == "__main__":
