@@ -203,6 +203,8 @@ def cotacaoPeriodo(qt_semanas=4):
 
 
 def merge_html():
+    #TODO Melhorar função com loop
+
     htmls01 = open("static/semana01.html", "r").read()
     htmls01m = open("static/semana01media.html", "r").read()
     htmls02 = open("static/semana02.html", "r").read()
@@ -234,6 +236,20 @@ def merge_html():
 
     htmls01merged = htmls01 + htmls01m
 
+    #TODO padrão de data deve ser definido com varialvel e usando strftime
+    #Alterando datas para o padrão pt_BR (hard mode) Semana 01
+    htmls01merged = BeautifulSoup(htmls01merged, 'html.parser')
+    datas = htmls01merged.findAll('th')
+    tabela = htmls01merged.find('table')
+    colunadata = tabela.find('tbody').findAll('th')
+
+    for data in colunadata:
+        databr = data.string.split("-")
+        data.string = str(databr[2]+"/"+databr[1]+"/"+databr[0])
+
+    htmls01merged = str(htmls01merged)
+
+
     # Limpeza de tabelas e merge por semana (Dias da semana + Media da Semana)
     htmls02 = htmls02.replace(
         '<table border="1" class="dataframe semanal table-striped table-responsive">',
@@ -256,6 +272,18 @@ def merge_html():
 
     htmls02merged = htmls02 + htmls02m
 
+    # Alterando datas para o padrão pt_BR (hard mode) Semana 02
+    htmls02merged = BeautifulSoup(htmls02merged, 'html.parser')
+    datas = htmls02merged.findAll('th')
+    tabela = htmls02merged.find('table')
+    colunadata = tabela.find('tbody').findAll('th')
+
+    for data in colunadata:
+        databr = data.string.split("-")
+        data.string = str(databr[2] + "/" + databr[1] + "/" + databr[0])
+
+    htmls02merged = str(htmls02merged)
+
     # Limpeza de tabelas e merge por semana (Dias da semana + Media da Semana)
     htmls03 = htmls03.replace(
         '<table border="1" class="dataframe semanal table-striped table-responsive">',
@@ -277,6 +305,19 @@ def merge_html():
         '')
 
     htmls03merged = htmls03 + htmls03m
+
+    # Alterando datas para o padrão pt_BR (hard mode) Semana 03
+    htmls03merged = BeautifulSoup(htmls03merged, 'html.parser')
+    datas = htmls03merged.findAll('th')
+    tabela = htmls03merged.find('table')
+    colunadata = tabela.find('tbody').findAll('th')
+
+    for data in colunadata:
+        databr = data.string.split("-")
+        data.string = str(databr[2] + "/" + databr[1] + "/" + databr[0])
+
+    htmls03merged = str(htmls03merged)
+
     # Limpeza de tabelas e merge por semana (Dias da semana + Media da Semana)
     htmls04 = htmls04.replace(
         '<table border="1" class="dataframe semanal table-striped table-responsive">',
@@ -298,6 +339,18 @@ def merge_html():
         '')
 
     htmls04merged = htmls04 + htmls04m
+
+    # Alterando datas para o padrão pt_BR (hard mode) Semana 01
+    htmls04merged = BeautifulSoup(htmls04merged, 'html.parser')
+    datas = htmls04merged.findAll('th')
+    tabela = htmls04merged.find('table')
+    colunadata = tabela.find('tbody').findAll('th')
+
+    for data in colunadata:
+        databr = data.string.split("-")
+        data.string = str(databr[2] + "/" + databr[1] + "/" + databr[0])
+
+    htmls04merged = str(htmls04merged)
 
     mesclado = BeautifulSoup(
         htmls04merged + htmls03merged + htmls02merged + htmls01merged,
