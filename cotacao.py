@@ -340,7 +340,7 @@ def merge_html():
 
     htmls04merged = htmls04 + htmls04m
 
-    # Alterando datas para o padrão pt_BR (hard mode) Semana 01
+    # Alterando datas para o padrão pt_BR (hard mode) Semana 04
     htmls04merged = BeautifulSoup(htmls04merged, 'html.parser')
     datas = htmls04merged.findAll('th')
     tabela = htmls04merged.find('table')
