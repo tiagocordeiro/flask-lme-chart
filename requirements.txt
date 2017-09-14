@@ -14,7 +14,7 @@ pandas==0.20.3
 python-dateutil==2.6.1
 pytz==2017.2
 Quandl==3.2.0
-requests==2.18.3
+requests==2.18.4
 six==1.10.0
 urllib3==1.22
 Werkzeug==0.12.2
