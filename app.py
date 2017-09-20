@@ -94,6 +94,49 @@ def index(chartID='chart_ID', chart_type='line', chart_height=350):
                            yAxis=yAxis)
 
 
+@app.route('/lme-dashboard')
+def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
+    cotacaoatual = pd.read_csv('static/cotacao-atual.csv')
+
+    cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                            'Estanho', 'Niquel', 'Dolar']
+
+    df = pd.DataFrame(cotacaoatual)
+
+    df['Data'] = pd.to_datetime(df['Data'])
+
+    df = df.set_index(df['Data'])
+
+    df = df.drop('Data', axis=1)
+
+    df.fillna(method='ffill', inplace=True)
+
+    cobre = list(df['Cobre'])
+    zinco = list(df['Zinco'])
+    aluminio = list(df['Aluminio'])
+    chumbo = list(df['Chumbo'])
+    estanho = list(df['Estanho'])
+    niquel = list(df['Niquel'])
+    dolar = list(df['Dolar'])
+    data = list(df.index.strftime('%d/%m'))
+
+    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
+    series = [{"name": 'Cobre', "data": cobre},
+              {"name": 'Zinco', "data": zinco, "visible": 'false'},
+              {"name": 'Alumínio', "data": aluminio, "visible": 'false'},
+              {"name": 'Chumbo', "data": chumbo, "visible": 'false'},
+              {"name": 'Estanho', "data": estanho, "visible": 'false'},
+              {"name": 'Níquel', "data": niquel, "visible": 'false'},
+              {"name": 'Dolar', "data": dolar, "visible": 'false'}
+              ]
+    title = {"text": 'Cotação LME'}
+    xAxis = {"categories": data, "crosshair": 'true'}
+    yAxis = {"title": {"text": 'Valor'}}
+    return render_template('lme-dashboard.html', chartID=chartID, chart=chart,
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
+
+
 @app.route('/lme/cobre')
 def lme_cobre(chartID='chart_ID', chart_type='line', chart_height=350):
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
