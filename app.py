@@ -112,7 +112,7 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     df.fillna(method='ffill', inplace=True)
 
     cobre = list(df['Cobre'])
-    zinco = list(df['Zinco'])
+    zinco = list(df['Zinco']) 
     aluminio = list(df['Aluminio'])
     chumbo = list(df['Chumbo'])
     estanho = list(df['Estanho'])
