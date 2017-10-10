@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from datetime import datetime, timedelta
+import sqlite3 as db
 import pandas as pd
 import os
 
@@ -96,7 +97,9 @@ def index(chartID='chart_ID', chart_type='line', chart_height=350):
 
 @app.route('/lme-dashboard')
 def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
-    cotacaoatual = pd.read_csv('static/cotacao-atual.csv')
+    # cotacaoatual = pd.read_csv('static/cotacao-atual.csv')
+    cnx = db.connect('lme.db')
+    cotacaoatual = pd.read_sql_query("select * from cotacoes", cnx)
 
     cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
                             'Estanho', 'Niquel', 'Dolar']
