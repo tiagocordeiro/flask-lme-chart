@@ -50,7 +50,7 @@ def cotacaoAtualizada():
                               returns="pandas")
 
     todo_periodo.columns = ['Cobre', 'Zinco', 'Aluminio', 'Chumbo',
-                           'Estanho', 'Niquel', 'Dolar']
+                            'Estanho', 'Niquel', 'Dolar']
 
     merged_data.columns = ['Cobre', 'Zinco', 'Aluminio', 'Chumbo',
                            'Estanho', 'Niquel', 'Dolar']
@@ -58,7 +58,8 @@ def cotacaoAtualizada():
     todo_periodo.to_csv('static/todo-periodo.csv', encoding='utf-8')
 
     merged_data.to_csv('static/cotacao-atual.csv', encoding='utf-8')
-    #Teste salvando cotação na raiz do projeto
+
+    # Teste salvando cotação na raiz do projeto
     merged_data.to_csv('cotacao-atual.csv', encoding='utf-8')
 
     # merged_data.to_sql('cotacoes', cnx, if_exists='replace')
@@ -170,15 +171,15 @@ def cotacaoPeriodo(qt_semanas=4):
         # fo = open('static/semana'
         # + str(semanas[i][0].strftime("%U")) + '.html', "w")
         fo = open('static/semana' + '{num:02d}'.format(num=i) + '.html', 'w')
-        fo.write(df[semanas[i][0].strftime("%Y-%m-%d"):
-        semanas[i][1].strftime("%Y-%m-%d")].to_html(
+        fo.write(df[semanas[i][0].strftime("%Y-%m-%d"):semanas[i][1].strftime(
+            "%Y-%m-%d")].to_html(
             classes=['semanal', 'table-striped', 'table-responsive']))
         fo.close()
 
     # Salva HTML da Média Semanal
     for i in range(datas, 0, -1):
-        media_semana = df[semanas[i][0].strftime("%Y-%m-%d"):
-        semanas[i][1].strftime("%Y-%m-%d")]
+        media_semana = df[semanas[i][0].strftime("%Y-%m-%d"):semanas[i][
+            1].strftime("%Y-%m-%d")]
         media_semana = pd.DataFrame(media_semana.mean())
         media_semana.rename(
             columns={0: 'Semana:' + semanas[i][0].strftime("%U")},
@@ -205,7 +206,7 @@ def cotacaoPeriodo(qt_semanas=4):
 
 
 def merge_html():
-    #TODO Melhorar função com loop
+    # TODO Melhorar função com loop
 
     htmls01 = open("static/semana01.html", "r").read()
     htmls01m = open("static/semana01media.html", "r").read()
@@ -238,8 +239,8 @@ def merge_html():
 
     htmls01merged = htmls01 + htmls01m
 
-    #TODO padrão de data deve ser definido com varialvel e usando strftime
-    #Alterando datas para o padrão pt_BR (hard mode) Semana 01
+    # TODO padrão de data deve ser definido com varialvel e usando strftime
+    # Alterando datas para o padrão pt_BR (hard mode) Semana 01
     htmls01merged = BeautifulSoup(htmls01merged, 'html.parser')
     datas = htmls01merged.findAll('th')
     tabela = htmls01merged.find('table')
@@ -250,7 +251,6 @@ def merge_html():
         data.string = str(databr[2]+"/"+databr[1]+"/"+databr[0])
 
     htmls01merged = str(htmls01merged)
-
 
     # Limpeza de tabelas e merge por semana (Dias da semana + Media da Semana)
     htmls02 = htmls02.replace(
