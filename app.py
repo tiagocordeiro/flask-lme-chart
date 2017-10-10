@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 from datetime import datetime, timedelta
-import sqlite3 as db
 import pandas as pd
 import os
 
