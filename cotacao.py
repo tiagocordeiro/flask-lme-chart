@@ -58,6 +58,8 @@ def cotacaoAtualizada():
     todo_periodo.to_csv('static/todo-periodo.csv', encoding='utf-8')
 
     merged_data.to_csv('static/cotacao-atual.csv', encoding='utf-8')
+    #Teste salvando cotação na raiz do projeto
+    merged_data.to_csv('cotacao-atual.csv', encoding='utf-8')
 
     # merged_data.to_sql('cotacoes', cnx, if_exists='replace')
     todo_periodo.to_sql('cotacoes', cnx, if_exists='replace')
