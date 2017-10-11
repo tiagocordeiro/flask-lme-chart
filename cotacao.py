@@ -159,7 +159,7 @@ def cotacaoPeriodo(qt_semanas=4):
             ['Cobre', 'Zinco', 'Aluminio', 'Chumbo', 'Estanho', 'Niquel',
              'Dolar']]
 
-        print('\u2550' * 73)
+        print('\u2550' * 74)
         print(media_semana_pivot)
         print('\n')
 
