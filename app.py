@@ -2,6 +2,8 @@ from flask import Flask, render_template
 from datetime import datetime, timedelta
 import pandas as pd
 import os
+from urllib import parse
+import psycopg2
 
 app = Flask(__name__)
 
@@ -96,9 +98,21 @@ def index(chartID='chart_ID', chart_type='line', chart_height=350):
 
 @app.route('/lme-dashboard')
 def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
-    cotacaoatual = pd.read_csv('cotacao-atual.csv')
+    parse.uses_netloc.append("postgres")
+    url = parse.urlparse(os.environ["DATABASE_URL"])
+
+    conn = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
+
+    # cotacaoatual = pd.read_csv('cotacao-atual.csv')
     # cnx = db.connect('lme.db')
     # cotacaoatual = pd.read_sql_query("select * from cotacoes", cnx)
+    cotacaoatual = pd.read_sql("select * from cotacao_lme", conn)
 
     cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
                             'Estanho', 'Niquel', 'Dolar']
