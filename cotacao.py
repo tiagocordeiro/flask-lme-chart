@@ -7,6 +7,8 @@ import os
 import pandas as pd
 import sqlite3 as db
 import quandl
+from urllib import parse
+import psycopg2
 
 quandl.ApiConfig.api_key = os.environ.get('QUANDL_KEY')
 
@@ -28,6 +30,17 @@ def cotacaoAtualizada():
     """
     check_html_folder()
     cnx = db.connect('lme.db')
+
+    parse.uses_netloc.append("postgres")
+    url = parse.urlparse(os.environ["DATABASE_URL"])
+
+    conn = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
 
     # Parametros de inicio e fim do periodo pode ser usado
     now = datetime.now()
@@ -68,6 +81,8 @@ def cotacaoAtualizada():
     cnx.commit()
     print("Cotação atualizada...")
     cnx.close()
+
+    todo_periodo.to_sql('cotacao_lme', conn, if_exists='replace')
 
 
 def pegaCotacao():
@@ -379,6 +394,6 @@ if __name__ == '__main__':
     # cotacao = pegaCotacao()
     # print(cotacao)
     # cotacaoPeriodo(4)
-    cotacaoAtualizada()
+    # cotacaoAtualizada()
     cotacaoPeriodo(4)
-    merge_html()
+    # merge_html()
