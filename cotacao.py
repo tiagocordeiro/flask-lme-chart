@@ -31,16 +31,16 @@ def cotacaoAtualizada():
     check_html_folder()
     cnx = db.connect('lme.db')
 
-    parse.uses_netloc.append("postgres")
-    url = parse.urlparse(os.environ["DATABASE_URL"])
-
-    conn = psycopg2.connect(
-        database=url.path[1:],
-        user=url.username,
-        password=url.password,
-        host=url.hostname,
-        port=url.port
-    )
+    # parse.uses_netloc.append("postgres")
+    # url = parse.urlparse(os.environ["DATABASE_URL"])
+    #
+    # conn = psycopg2.connect(
+    #     database=url.path[1:],
+    #     user=url.username,
+    #     password=url.password,
+    #     host=url.hostname,
+    #     port=url.port
+    # )
 
     # Parametros de inicio e fim do periodo pode ser usado
     now = datetime.now()
@@ -82,13 +82,27 @@ def cotacaoAtualizada():
     print("Cotação atualizada...")
     cnx.close()
 
-    todo_periodo.to_sql('cotacao_lme', conn, if_exists='replace')
+    # todo_periodo.to_sql('cotacao_lme', conn, if_exists='replace')
 
 
 def pegaCotacao():
     cnx = db.connect('lme.db')
     df = pd.read_sql_query("select * from cotacoes", cnx)
     cnx.close()
+
+    # parse.uses_netloc.append("postgres")
+    # url = parse.urlparse(os.environ["DATABASE_URL"])
+    #
+    # conn = psycopg2.connect(
+    #     database=url.path[1:],
+    #     user=url.username,
+    #     password=url.password,
+    #     host=url.hostname,
+    #     port=url.port
+    # )
+    #
+    # df = pd.read_sql("select * from cotacao_lme", conn)
+
     return df
 
 
@@ -394,6 +408,6 @@ if __name__ == '__main__':
     # cotacao = pegaCotacao()
     # print(cotacao)
     # cotacaoPeriodo(4)
-    # cotacaoAtualizada()
+    cotacaoAtualizada()
     cotacaoPeriodo(4)
-    # merge_html()
+    merge_html()
