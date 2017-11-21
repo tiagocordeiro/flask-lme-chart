@@ -119,7 +119,7 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
 
     df = pd.DataFrame(cotacaoatual)
 
-    df['Data'] = pd.to_datetime(df['Data'])
+    df['Data'] = pd.to_datetime(df['Data'], utc=True)
 
     df = df.set_index(df['Data'])
 
@@ -134,7 +134,7 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     estanho = list(df['Estanho'])
     niquel = list(df['Niquel'])
     dolar = list(df['Dolar'])
-    data = list(df.index.strftime('%d/%m'))
+    data = list(df.index.strftime('%d/%m/%y'))
 
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
     series = [{"name": 'Cobre', "data": cobre},

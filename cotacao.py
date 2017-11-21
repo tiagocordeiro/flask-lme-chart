@@ -7,8 +7,6 @@ import os
 import pandas as pd
 import sqlite3 as db
 import quandl
-from urllib import parse
-import psycopg2
 
 quandl.ApiConfig.api_key = os.environ.get('QUANDL_KEY')
 
@@ -30,17 +28,6 @@ def cotacaoAtualizada():
     """
     check_html_folder()
     cnx = db.connect('lme.db')
-
-    # parse.uses_netloc.append("postgres")
-    # url = parse.urlparse(os.environ["DATABASE_URL"])
-    #
-    # conn = psycopg2.connect(
-    #     database=url.path[1:],
-    #     user=url.username,
-    #     password=url.password,
-    #     host=url.hostname,
-    #     port=url.port
-    # )
 
     # Parametros de inicio e fim do periodo pode ser usado
     now = datetime.now()
@@ -258,7 +245,8 @@ def merge_html():
 
     htmls01m = htmls01m.replace('<th></th>', '<th>Média</th>')
 
-    htmls01m = htmls01m.replace('<tr>', '<tr class="media" style="background-color: #d4c97e !important;">')
+    htmls01m = htmls01m.replace('<tr>',
+                                '<tr class="media" style="background-color: #d4c97e !important;">')
 
     htmls01 = htmls01.replace('</table>', '')
 
@@ -277,7 +265,7 @@ def merge_html():
 
     for data in colunadata:
         databr = data.string.split("-")
-        data.string = str(databr[2]+"/"+databr[1]+"/"+databr[0])
+        data.string = str(databr[2] + "/" + databr[1] + "/" + databr[0])
 
     htmls01merged = str(htmls01merged)
 
@@ -293,7 +281,8 @@ def merge_html():
 
     htmls02m = htmls02m.replace('<th></th>', '<th>Média</th>')
 
-    htmls02m = htmls02m.replace('<tr>', '<tr class="media" style="background-color: #d4c97e !important;">')
+    htmls02m = htmls02m.replace('<tr>',
+                                '<tr class="media" style="background-color: #d4c97e !important;">')
 
     htmls02 = htmls02.replace('</table>', '')
 
@@ -327,7 +316,8 @@ def merge_html():
 
     htmls03m = htmls03m.replace('<th></th>', '<th>Média</th>')
 
-    htmls03m = htmls03m.replace('<tr>', '<tr class="media" style="background-color: #d4c97e !important;">')
+    htmls03m = htmls03m.replace('<tr>',
+                                '<tr class="media" style="background-color: #d4c97e !important;">')
 
     htmls03 = htmls03.replace('</table>', '')
 
@@ -361,7 +351,8 @@ def merge_html():
 
     htmls04m = htmls04m.replace('<th></th>', '<th>Média</th>')
 
-    htmls04m = htmls04m.replace('<tr>', '<tr class="media" style="background-color: #d4c97e !important;">')
+    htmls04m = htmls04m.replace('<tr>',
+                                '<tr class="media" style="background-color: #d4c97e !important;">')
 
     htmls04 = htmls04.replace('</table>', '')
 
@@ -408,6 +399,8 @@ if __name__ == '__main__':
     # cotacao = pegaCotacao()
     # print(cotacao)
     # cotacaoPeriodo(4)
+    # updateDatabase()
+
     cotacaoAtualizada()
     cotacaoPeriodo(4)
     merge_html()
