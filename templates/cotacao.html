@@ -12,6 +12,7 @@
 
 
 		 <link href="../static/css/materialize.min.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+		 <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
 
 		<!-- SUPPORT FOR IE6-8 OF HTML5 ELEMENTS -->
 		<!--[if lt IE 9]>
@@ -51,7 +52,10 @@
         </nav>
         <div id={{ chartID|safe }} class="chart" style="width: 100%"></div>
         <div style="overflow-x: auto">
-            {% include 'mesclado.html' %}
+            {% for tabela in tabelas %}
+                {{ tabela|safe }}
+            {% endfor %}
+            <!--{% include 'mesclado.html' %}-->
         </div>
 		<script>
 			var chart_id = {{ chartID|safe }}

@@ -96,8 +96,19 @@ def index(chartID='chart_ID', chart_type='line', chart_height=350):
                            yAxis=yAxis)
 
 
-@app.route('/lme-dashboard')
+@app.route('/lme-dashboard/')
 def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
+    qt_semanas = 4
+    hoje = datetime.now()
+    diadasemana = hoje.isoweekday()
+
+    if diadasemana == 1:
+        hoje = datetime.now() - timedelta(weeks=1)
+    else:
+        pass
+
+    periodo = hoje - timedelta(weeks=4)
+
     parse.uses_netloc.append("postgres")
     url = parse.urlparse(os.environ["DATABASE_URL"])
 
@@ -109,10 +120,25 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
         port=url.port
     )
 
-    # cotacaoatual = pd.read_csv('cotacao-atual.csv')
-    # cnx = db.connect('lme.db')
-    # cotacaoatual = pd.read_sql_query("select * from cotacoes", cnx)
-    cotacaoatual = pd.read_sql("select * from cotacao_lme", conn)
+    # cotacaoatual = pd.read_sql("SELECT * FROM cotacao_lme")
+
+    query = """
+            SELECT * 
+            FROM cotacao_lme 
+            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
+            """
+
+    query_params = {'inicio': periodo, 'fim': hoje}
+
+    cotacaoatual = pd.read_sql(query, conn, params=query_params)
+    # cotacaoatual = pd.read_sql(
+    #     """
+    #     SELECT * FROM cotacao_lme
+    #     WHERE "Date" BETWEEN
+    #     %(inicio)s AND %(fim)s
+    #     """,
+    #     conn)
+
 
     cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
                             'Estanho', 'Niquel', 'Dolar']
@@ -126,6 +152,42 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     df = df.drop('Data', axis=1)
 
     df.fillna(method='ffill', inplace=True)
+
+    datas = qt_semanas
+
+    semana01_inicio = hoje - timedelta(days=hoje.isoweekday() - 1)
+    semana01_fim = semana01_inicio + timedelta(days=4)
+
+    semanas = {}
+
+    semanas[1] = (semana01_inicio, semana01_fim)
+
+    for i in range(2, qt_semanas + 1):
+        semanas[i] = (semanas[i - 1][0] - timedelta(weeks=1),
+                      semanas[i - 1][1] - timedelta(weeks=1))
+
+    cotacao_semana_04 = df[semanas[4][0].strftime("%Y-%m-%d"):semanas[4][1].strftime("%Y-%m-%d")]
+    cotacao_semana_03 = df[semanas[3][0].strftime("%Y-%m-%d"):semanas[3][1].strftime("%Y-%m-%d")]
+    cotacao_semana_02 = df[semanas[2][0].strftime("%Y-%m-%d"):semanas[2][1].strftime("%Y-%m-%d")]
+    cotacao_semana_01 = df[semanas[1][0].strftime("%Y-%m-%d"):semanas[1][1].strftime("%Y-%m-%d")]
+
+    media_semana_04 = df[semanas[4][0].strftime("%Y-%m-%d"):semanas[4][1].strftime("%Y-%m-%d")]
+    media_semana_03 = df[semanas[3][0].strftime("%Y-%m-%d"):semanas[3][1].strftime("%Y-%m-%d")]
+    media_semana_02 = df[semanas[2][0].strftime("%Y-%m-%d"):semanas[2][1].strftime("%Y-%m-%d")]
+    media_semana_01 = df[semanas[1][0].strftime("%Y-%m-%d"):semanas[1][1].strftime("%Y-%m-%d")]
+
+    media_semana_04 = df[semanas[4][0].strftime("%Y-%m-%d"):semanas[4][1].strftime("%Y-%m-%d")]
+    media_semana_04 = pd.DataFrame(media_semana_04.mean())
+    media_semana_04.rename(columns={0: 'Semana:' + semanas[i][0].strftime("%U")},inplace=True)
+    media_semana_04_pivot = pd.pivot_table(media_semana_04,
+                                        columns=['Cobre', 'Zinco',
+                                                 'Aluminio', 'Chumbo',
+                                                 'Estanho', 'Niquel',
+                                                 'Dolar'])
+    media_semana_04_pivot = media_semana_04_pivot[
+        ['Cobre', 'Zinco', 'Aluminio', 'Chumbo', 'Estanho', 'Niquel',
+         'Dolar']]
+
 
     cobre = list(df['Cobre'])
     zinco = list(df['Zinco'])
@@ -148,9 +210,12 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     title = {"text": 'Cotação LME'}
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
-    return render_template('lme-dashboard.html', chartID=chartID, chart=chart,
+    return render_template('cotacao.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis,
-                           yAxis=yAxis)
+                           yAxis=yAxis,
+                           tabelas=[
+                           cotacao_semana_04.to_html(classes='cotacaolme'),
+                           media_semana_04_pivot.to_html(classes='mediasemana')])
 
 
 @app.route('/lme/cobre')
