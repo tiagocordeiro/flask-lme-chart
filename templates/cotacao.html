@@ -56,15 +56,12 @@
                 {{ tabela|safe }}
             {% endfor %}
             <!--{% include 'mesclado.html' %}-->
+            {{ media_periodo_pivot|safe }}
         </div>
 
         <div class="row">
-          <div class="col s12">&nbsp;</div>
-          <div class="col s3">
-              {{ media_periodo|safe }}
-          </div>
-          <div class="col s9">
-              <p><strong>Metais</strong> – Os valores da cotação LME referem-se à média entre o CASH BUYER e CASH SELLER &amp; SETTLEMENT em US$/T</p>
+          <div class="col s12">
+            <p><strong>Metais</strong> – Os valores da cotação LME referem-se à média entre o CASH BUYER e CASH SELLER &amp; SETTLEMENT em US$/T</p>
             <p><strong>Dólar</strong> – R$/US$ – Esta taxa de câmbio mostra o valor de 1 Dólar Americano em Reais Brasileiros. Esta taxa de câmbio é uma média de taxas de várias fontes. Estas incluem exchanges, corretoras, jornais e fontes de bancos centrais.</p>
           </div>
         </div>

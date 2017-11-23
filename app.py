@@ -195,7 +195,7 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
         1].strftime("%Y-%m-%d")]
     media_semana_04 = pd.DataFrame(media_semana_04.mean())
     media_semana_04.rename(
-        columns={0: 'Semana:' + semanas[4][0].strftime("%U")}, inplace=True)
+        columns={0: 'semana: ' + semanas[4][0].strftime("%U")}, inplace=True)
     media_semana_04_pivot = pd.pivot_table(media_semana_04,
                                            columns=['Cobre', 'Zinco',
                                                     'Aluminio', 'Chumbo',
@@ -209,7 +209,7 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
         1].strftime("%Y-%m-%d")]
     media_semana_03 = pd.DataFrame(media_semana_03.mean())
     media_semana_03.rename(
-        columns={0: 'Semana:' + semanas[3][0].strftime("%U")}, inplace=True)
+        columns={0: 'semana: ' + semanas[3][0].strftime("%U")}, inplace=True)
     media_semana_03_pivot = pd.pivot_table(media_semana_03,
                                            columns=['Cobre', 'Zinco',
                                                     'Aluminio', 'Chumbo',
@@ -223,7 +223,7 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
         1].strftime("%Y-%m-%d")]
     media_semana_02 = pd.DataFrame(media_semana_02.mean())
     media_semana_02.rename(
-        columns={0: 'Semana:' + semanas[2][0].strftime("%U")}, inplace=True)
+        columns={0: 'Semana: ' + semanas[2][0].strftime("%U")}, inplace=True)
     media_semana_02_pivot = pd.pivot_table(media_semana_02,
                                            columns=['Cobre', 'Zinco',
                                                     'Aluminio', 'Chumbo',
@@ -237,7 +237,7 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
         1].strftime("%Y-%m-%d")]
     media_semana_01 = pd.DataFrame(media_semana_01.mean())
     media_semana_01.rename(
-        columns={0: 'Semana:' + semanas[1][0].strftime("%U")}, inplace=True)
+        columns={0: 'semana: ' + semanas[1][0].strftime("%U")}, inplace=True)
     media_semana_01_pivot = pd.pivot_table(media_semana_01,
                                            columns=['Cobre', 'Zinco',
                                                     'Aluminio', 'Chumbo',
@@ -249,13 +249,13 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
 
     # Corrigindo htmls e datas ptBR
     media_semana_01 = media_semana_01_pivot.to_html(classes='mediasemana')
-    media_semana_01 = media_semana_01.replace('<th></th>', '<th>Média</th>')
+    media_semana_01 = media_semana_01.replace('<th></th>', '<th>média na</th>')
     media_semana_02 = media_semana_02_pivot.to_html(classes='mediasemana')
-    media_semana_02 = media_semana_02.replace('<th></th>', '<th>Média</th>')
+    media_semana_02 = media_semana_02.replace('<th></th>', '<th>média na</th>')
     media_semana_03 = media_semana_03_pivot.to_html(classes='mediasemana')
-    media_semana_03 = media_semana_03.replace('<th></th>', '<th>Média</th>')
+    media_semana_03 = media_semana_03.replace('<th></th>', '<th>média na</th>')
     media_semana_04 = media_semana_04_pivot.to_html(classes='mediasemana')
-    media_semana_04 = media_semana_04.replace('<th></th>', '<th>Média</th>')
+    media_semana_04 = media_semana_04.replace('<th></th>', '<th>média na</th>')
 
     cotacao_semana_01 = cotacao_semana_01.to_html(classes='cotacaolme')
     cotacao_semana_01 = cotacao_semana_01.replace('<th></th>', '<th>Data</th>')
@@ -309,14 +309,34 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     media_periodo = pd.DataFrame(media_periodo.mean())
     media_periodo = media_periodo.to_html(classes='mediaperiodo')
     media_periodo = media_periodo.replace('<th>0</th>',
-                                          '<th>Média do período</th>')
+                                          '<th>média no período</th>')
     media_periodo = media_periodo.replace('<th></th>',
                                           '<th>Metais / Dolar</th>')
+
+    media_periodo_hor = df[
+                        periodo.strftime("%Y-%m-%d"):hoje.strftime("%Y-%m-%d")]
+    media_periodo_hor = pd.DataFrame(media_periodo_hor.mean())
+    media_periodo_hor = pd.pivot_table(media_periodo_hor,
+                                       columns=['Cobre', 'Zinco',
+                                                'Aluminio', 'Chumbo',
+                                                'Estanho', 'Niquel',
+                                                'Dolar'])
+
+    media_periodo_hor = media_periodo_hor[
+        ['Cobre', 'Zinco', 'Aluminio', 'Chumbo', 'Estanho', 'Niquel',
+         'Dolar']]
+
+    media_periodo_hor = media_periodo_hor.to_html(classes='mediaperiodohor')
+    media_periodo_hor = media_periodo_hor.replace('<th></th>',
+                                                  '<th>média no</th>')
+    media_periodo_hor = media_periodo_hor.replace('<th>0</th>',
+                                                  '<th>período</th>')
 
     return render_template('cotacao.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis,
                            yAxis=yAxis,
                            media_periodo=media_periodo,
+                           media_periodo_pivot=media_periodo_hor,
                            tabelas=[
                                cotacao_semana_04, media_semana_04,
                                cotacao_semana_03, media_semana_03,
