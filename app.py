@@ -63,7 +63,6 @@ niquel_completo = list(df_completo['Niquel'])
 dolar_completo = list(df_completo['Dolar'])
 data_completo = list(df_completo.index.strftime('%d/%m/%Y'))
 
-
 """
 Médias períodos
 """
@@ -128,8 +127,8 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     # cotacaoatual = pd.read_sql("SELECT * FROM cotacao_lme")
 
     query = """
-            SELECT * 
-            FROM cotacao_lme 
+            SELECT *
+            FROM cotacao_lme
             WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
             """
 
@@ -172,8 +171,6 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    datas = qt_semanas
-
     semana01_inicio = hoje - timedelta(days=hoje.isoweekday() - 1)
     semana01_fim = semana01_inicio + timedelta(days=4)
 
@@ -185,27 +182,34 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
         semanas[i] = (semanas[i - 1][0] - timedelta(weeks=1),
                       semanas[i - 1][1] - timedelta(weeks=1))
 
-    cotacao_semana_04 = df[semanas[4][0].strftime("%Y-%m-%d"):semanas[4][1].strftime("%Y-%m-%d")]
-    cotacao_semana_03 = df[semanas[3][0].strftime("%Y-%m-%d"):semanas[3][1].strftime("%Y-%m-%d")]
-    cotacao_semana_02 = df[semanas[2][0].strftime("%Y-%m-%d"):semanas[2][1].strftime("%Y-%m-%d")]
-    cotacao_semana_01 = df[semanas[1][0].strftime("%Y-%m-%d"):semanas[1][1].strftime("%Y-%m-%d")]
+    cotacao_semana_04 = df[semanas[4][0].strftime("%Y-%m-%d"):semanas[4][
+        1].strftime("%Y-%m-%d")]
+    cotacao_semana_03 = df[semanas[3][0].strftime("%Y-%m-%d"):semanas[3][
+        1].strftime("%Y-%m-%d")]
+    cotacao_semana_02 = df[semanas[2][0].strftime("%Y-%m-%d"):semanas[2][
+        1].strftime("%Y-%m-%d")]
+    cotacao_semana_01 = df[semanas[1][0].strftime("%Y-%m-%d"):semanas[1][
+        1].strftime("%Y-%m-%d")]
 
-
-    media_semana_04 = df[semanas[4][0].strftime("%Y-%m-%d"):semanas[4][1].strftime("%Y-%m-%d")]
+    media_semana_04 = df[semanas[4][0].strftime("%Y-%m-%d"):semanas[4][
+        1].strftime("%Y-%m-%d")]
     media_semana_04 = pd.DataFrame(media_semana_04.mean())
-    media_semana_04.rename(columns={0: 'Semana:' + semanas[4][0].strftime("%U")},inplace=True)
+    media_semana_04.rename(
+        columns={0: 'Semana:' + semanas[4][0].strftime("%U")}, inplace=True)
     media_semana_04_pivot = pd.pivot_table(media_semana_04,
-                                        columns=['Cobre', 'Zinco',
-                                                 'Aluminio', 'Chumbo',
-                                                 'Estanho', 'Niquel',
-                                                 'Dolar'])
+                                           columns=['Cobre', 'Zinco',
+                                                    'Aluminio', 'Chumbo',
+                                                    'Estanho', 'Niquel',
+                                                    'Dolar'])
     media_semana_04_pivot = media_semana_04_pivot[
         ['Cobre', 'Zinco', 'Aluminio', 'Chumbo', 'Estanho', 'Niquel',
          'Dolar']]
 
-    media_semana_03 = df[semanas[3][0].strftime("%Y-%m-%d"):semanas[3][1].strftime("%Y-%m-%d")]
+    media_semana_03 = df[semanas[3][0].strftime("%Y-%m-%d"):semanas[3][
+        1].strftime("%Y-%m-%d")]
     media_semana_03 = pd.DataFrame(media_semana_03.mean())
-    media_semana_03.rename(columns={0: 'Semana:' + semanas[3][0].strftime("%U")}, inplace=True)
+    media_semana_03.rename(
+        columns={0: 'Semana:' + semanas[3][0].strftime("%U")}, inplace=True)
     media_semana_03_pivot = pd.pivot_table(media_semana_03,
                                            columns=['Cobre', 'Zinco',
                                                     'Aluminio', 'Chumbo',
@@ -215,10 +219,11 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
         ['Cobre', 'Zinco', 'Aluminio', 'Chumbo', 'Estanho', 'Niquel',
          'Dolar']]
 
-
-    media_semana_02 = df[semanas[2][0].strftime("%Y-%m-%d"):semanas[2][1].strftime("%Y-%m-%d")]
+    media_semana_02 = df[semanas[2][0].strftime("%Y-%m-%d"):semanas[2][
+        1].strftime("%Y-%m-%d")]
     media_semana_02 = pd.DataFrame(media_semana_02.mean())
-    media_semana_02.rename(columns={0: 'Semana:' + semanas[2][0].strftime("%U")}, inplace=True)
+    media_semana_02.rename(
+        columns={0: 'Semana:' + semanas[2][0].strftime("%U")}, inplace=True)
     media_semana_02_pivot = pd.pivot_table(media_semana_02,
                                            columns=['Cobre', 'Zinco',
                                                     'Aluminio', 'Chumbo',
@@ -228,10 +233,11 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
         ['Cobre', 'Zinco', 'Aluminio', 'Chumbo', 'Estanho', 'Niquel',
          'Dolar']]
 
-
-    media_semana_01 = df[semanas[1][0].strftime("%Y-%m-%d"):semanas[1][1].strftime("%Y-%m-%d")]
+    media_semana_01 = df[semanas[1][0].strftime("%Y-%m-%d"):semanas[1][
+        1].strftime("%Y-%m-%d")]
     media_semana_01 = pd.DataFrame(media_semana_01.mean())
-    media_semana_01.rename(columns={0: 'Semana:' + semanas[1][0].strftime("%U")}, inplace=True)
+    media_semana_01.rename(
+        columns={0: 'Semana:' + semanas[1][0].strftime("%U")}, inplace=True)
     media_semana_01_pivot = pd.pivot_table(media_semana_01,
                                            columns=['Cobre', 'Zinco',
                                                     'Aluminio', 'Chumbo',
@@ -287,7 +293,6 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
         databr = databr[0].split("-")
         data.string = str(databr[2] + "/" + databr[1] + "/" + databr[0])
 
-
     cotacao_semana_04 = cotacao_semana_04.to_html(classes='cotacaolme')
     cotacao_semana_04 = cotacao_semana_04.replace('<th></th>', '<th>Data</th>')
     cotacao_semana_04 = BeautifulSoup(cotacao_semana_04, 'html.parser')
@@ -303,18 +308,20 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     media_periodo = df[periodo.strftime("%Y-%m-%d"):hoje.strftime("%Y-%m-%d")]
     media_periodo = pd.DataFrame(media_periodo.mean())
     media_periodo = media_periodo.to_html(classes='mediaperiodo')
-    media_periodo = media_periodo.replace('<th>0</th>', '<th>Média do período</th>')
-    media_periodo = media_periodo.replace('<th></th>', '<th>Metais / Dolar</th>')
+    media_periodo = media_periodo.replace('<th>0</th>',
+                                          '<th>Média do período</th>')
+    media_periodo = media_periodo.replace('<th></th>',
+                                          '<th>Metais / Dolar</th>')
 
     return render_template('cotacao.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis,
                            yAxis=yAxis,
                            media_periodo=media_periodo,
                            tabelas=[
-                           cotacao_semana_04, media_semana_04,
-                           cotacao_semana_03, media_semana_03,
-                           cotacao_semana_02, media_semana_02,
-                           cotacao_semana_01, media_semana_01])
+                               cotacao_semana_04, media_semana_04,
+                               cotacao_semana_03, media_semana_03,
+                               cotacao_semana_02, media_semana_02,
+                               cotacao_semana_01, media_semana_01])
 
 
 @app.route('/lme/cobre')
