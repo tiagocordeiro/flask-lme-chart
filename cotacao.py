@@ -314,7 +314,7 @@ def merge_html():
     htmls03m = htmls03m.replace('<tr style="text-align: right;">',
                                 '<tr style="text-align: right; background-color: #d4c97e !important;">')
 
-    htmls03m = htmls03m.replace('<th></th>', '<th>Média</th>')
+    htmls03m = htmls03m.replace('<th></th>', '<th>Média da</th>')
 
     htmls03m = htmls03m.replace('<tr>',
                                 '<tr class="media" style="background-color: #d4c97e !important;">')
