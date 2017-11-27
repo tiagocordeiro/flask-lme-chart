@@ -129,7 +129,7 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
@@ -375,7 +375,7 @@ def lme_cotacao(chartID='chart_ID', chart_type='line', chart_height=350,
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
@@ -610,7 +610,7 @@ def lme_grafico(chartID='chart_ID', chart_type='line', chart_height=350):
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
@@ -676,7 +676,7 @@ def lme_grafico_cobre(chartID='chart_ID', chart_type='line', chart_height=350):
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
@@ -729,7 +729,7 @@ def lme_grafico_zinco(chartID='chart_ID', chart_type='line', chart_height=350):
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
@@ -783,7 +783,7 @@ def lme_grafico_aluminio(chartID='chart_ID', chart_type='line',
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
@@ -837,7 +837,7 @@ def lme_grafico_chumbo(chartID='chart_ID', chart_type='line',
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
@@ -891,7 +891,7 @@ def lme_grafico_estanho(chartID='chart_ID', chart_type='line',
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
@@ -945,7 +945,7 @@ def lme_grafico_niquel(chartID='chart_ID', chart_type='line',
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
@@ -998,7 +998,7 @@ def lme_grafico_dolar(chartID='chart_ID', chart_type='line', chart_height=350):
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
