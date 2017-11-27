@@ -705,7 +705,8 @@ def lme_grafico_cobre(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
+    return render_template('grafico_simples.html', chartID=chartID,
+                           chart=chart,
                            series=series, title=title, xAxis=xAxis,
                            yAxis=yAxis)
 
@@ -758,9 +759,9 @@ def lme_grafico_zinco(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis,
-                           yAxis=yAxis)
+    return render_template('grafico_simples.html', chartID=chartID,
+                           chart=chart, series=series, title=title,
+                           xAxis=xAxis, yAxis=yAxis)
 
 
 @app.route('/grafico/aluminio')
@@ -812,9 +813,9 @@ def lme_grafico_aluminio(chartID='chart_ID', chart_type='line',
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis,
-                           yAxis=yAxis)
+    return render_template('grafico_simples.html', chartID=chartID,
+                           chart=chart, series=series, title=title,
+                           xAxis=xAxis, yAxis=yAxis)
 
 
 @app.route('/grafico/chumbo')
@@ -866,9 +867,9 @@ def lme_grafico_chumbo(chartID='chart_ID', chart_type='line',
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis,
-                           yAxis=yAxis)
+    return render_template('grafico_simples.html', chartID=chartID,
+                           chart=chart, series=series, title=title,
+                           xAxis=xAxis, yAxis=yAxis)
 
 
 @app.route('/grafico/estanho')
@@ -920,9 +921,9 @@ def lme_grafico_estanho(chartID='chart_ID', chart_type='line',
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis,
-                           yAxis=yAxis)
+    return render_template('grafico_simples.html', chartID=chartID,
+                           chart=chart, series=series, title=title,
+                           xAxis=xAxis, yAxis=yAxis)
 
 
 @app.route('/grafico/niquel')
@@ -974,9 +975,9 @@ def lme_grafico_niquel(chartID='chart_ID', chart_type='line',
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis,
-                           yAxis=yAxis)
+    return render_template('grafico_simples.html', chartID=chartID,
+                           chart=chart, series=series, title=title,
+                           xAxis=xAxis, yAxis=yAxis)
 
 
 @app.route('/grafico/dolar')
@@ -1027,9 +1028,9 @@ def lme_grafico_dolar(chartID='chart_ID', chart_type='line', chart_height=350):
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis,
-                           yAxis=yAxis)
+    return render_template('grafico_simples.html', chartID=chartID,
+                           chart=chart, series=series, title=title,
+                           xAxis=xAxis, yAxis=yAxis)
 
 
 @app.route('/lme/cobre')
