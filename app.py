@@ -129,7 +129,7 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
+            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
@@ -375,7 +375,7 @@ def lme_cotacao(chartID='chart_ID', chart_type='line', chart_height=350,
     query = """
             SELECT *
             FROM cotacao_lme
-            WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
+            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
             """
 
     query_params = {'inicio': periodo, 'fim': hoje}
@@ -589,6 +589,447 @@ def lme_cotacao(chartID='chart_ID', chart_type='line', chart_height=350,
                                cotacao_semana_03, media_semana_03,
                                cotacao_semana_02, media_semana_02,
                                cotacao_semana_01, media_semana_01])
+
+
+@app.route('/grafico/')
+def lme_grafico(chartID='chart_ID', chart_type='line', chart_height=350):
+    hoje = datetime.now()
+    periodo = hoje - timedelta(weeks=4)
+
+    parse.uses_netloc.append("postgres")
+    url = parse.urlparse(os.environ["DATABASE_URL"])
+
+    conn = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
+
+    query = """
+            SELECT *
+            FROM cotacao_lme
+            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            """
+
+    query_params = {'inicio': periodo, 'fim': hoje}
+
+    cotacaoatual = pd.read_sql(query, conn, params=query_params)
+
+    cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                            'Estanho', 'Niquel', 'Dolar']
+
+    df = pd.DataFrame(cotacaoatual)
+
+    df['Data'] = pd.to_datetime(df['Data'], utc=True)
+
+    df = df.set_index(df['Data'])
+
+    df = df.drop('Data', axis=1)
+
+    df.fillna(method='ffill', inplace=True)
+
+    cobre = list(df['Cobre'])
+    zinco = list(df['Zinco'])
+    aluminio = list(df['Aluminio'])
+    chumbo = list(df['Chumbo'])
+    estanho = list(df['Estanho'])
+    niquel = list(df['Niquel'])
+    dolar = list(df['Dolar'])
+    data = list(df.index.strftime('%d/%m/%y'))
+
+    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
+    series = [{"name": 'Cobre', "data": cobre},
+              {"name": 'Zinco', "data": zinco, "visible": 'false'},
+              {"name": 'Alumínio', "data": aluminio, "visible": 'false'},
+              {"name": 'Chumbo', "data": chumbo, "visible": 'false'},
+              {"name": 'Estanho', "data": estanho, "visible": 'false'},
+              {"name": 'Níquel', "data": niquel, "visible": 'false'},
+              {"name": 'Dolar', "data": dolar, "visible": 'false'}
+              ]
+    title = {"text": 'Cotação LME'}
+    xAxis = {"categories": data, "crosshair": 'true'}
+    yAxis = {"title": {"text": 'Valor'}}
+
+    return render_template('grafico.html', chartID=chartID, chart=chart,
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
+
+
+@app.route('/grafico/cobre')
+def lme_grafico_cobre(chartID='chart_ID', chart_type='line', chart_height=350):
+    hoje = datetime.now()
+    periodo = hoje - timedelta(weeks=4)
+
+    parse.uses_netloc.append("postgres")
+    url = parse.urlparse(os.environ["DATABASE_URL"])
+
+    conn = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
+
+    query = """
+            SELECT *
+            FROM cotacao_lme
+            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            """
+
+    query_params = {'inicio': periodo, 'fim': hoje}
+
+    cotacaoatual = pd.read_sql(query, conn, params=query_params)
+
+    cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                            'Estanho', 'Niquel', 'Dolar']
+
+    df = pd.DataFrame(cotacaoatual)
+
+    df['Data'] = pd.to_datetime(df['Data'], utc=True)
+
+    df = df.set_index(df['Data'])
+
+    df = df.drop('Data', axis=1)
+
+    df.fillna(method='ffill', inplace=True)
+
+    cobre = list(df['Cobre'])
+    data = list(df.index.strftime('%d/%m/%y'))
+
+    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
+    series = [{"name": 'Cobre', "data": cobre}]
+    title = {"text": 'Cotação LME'}
+    xAxis = {"categories": data, "crosshair": 'true'}
+    yAxis = {"title": {"text": 'Valor'}}
+
+    return render_template('grafico.html', chartID=chartID, chart=chart,
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
+
+
+@app.route('/grafico/zinco')
+def lme_grafico_zinco(chartID='chart_ID', chart_type='line', chart_height=350):
+    hoje = datetime.now()
+    periodo = hoje - timedelta(weeks=4)
+
+    parse.uses_netloc.append("postgres")
+    url = parse.urlparse(os.environ["DATABASE_URL"])
+
+    conn = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
+
+    query = """
+            SELECT *
+            FROM cotacao_lme
+            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            """
+
+    query_params = {'inicio': periodo, 'fim': hoje}
+
+    cotacaoatual = pd.read_sql(query, conn, params=query_params)
+
+    cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                            'Estanho', 'Niquel', 'Dolar']
+
+    df = pd.DataFrame(cotacaoatual)
+
+    df['Data'] = pd.to_datetime(df['Data'], utc=True)
+
+    df = df.set_index(df['Data'])
+
+    df = df.drop('Data', axis=1)
+
+    df.fillna(method='ffill', inplace=True)
+
+    zinco = list(df['Zinco'])
+    data = list(df.index.strftime('%d/%m/%y'))
+
+    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
+    series = [{"name": 'Zinco', "data": zinco}]
+    title = {"text": 'Cotação LME'}
+    xAxis = {"categories": data, "crosshair": 'true'}
+    yAxis = {"title": {"text": 'Valor'}}
+
+    return render_template('grafico.html', chartID=chartID, chart=chart,
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
+
+
+@app.route('/grafico/aluminio')
+def lme_grafico_aluminio(chartID='chart_ID', chart_type='line',
+                         chart_height=350):
+    hoje = datetime.now()
+    periodo = hoje - timedelta(weeks=4)
+
+    parse.uses_netloc.append("postgres")
+    url = parse.urlparse(os.environ["DATABASE_URL"])
+
+    conn = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
+
+    query = """
+            SELECT *
+            FROM cotacao_lme
+            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            """
+
+    query_params = {'inicio': periodo, 'fim': hoje}
+
+    cotacaoatual = pd.read_sql(query, conn, params=query_params)
+
+    cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                            'Estanho', 'Niquel', 'Dolar']
+
+    df = pd.DataFrame(cotacaoatual)
+
+    df['Data'] = pd.to_datetime(df['Data'], utc=True)
+
+    df = df.set_index(df['Data'])
+
+    df = df.drop('Data', axis=1)
+
+    df.fillna(method='ffill', inplace=True)
+
+    aluminio = list(df['Aluminio'])
+    data = list(df.index.strftime('%d/%m/%y'))
+
+    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
+    series = [{"name": 'Alumínio', "data": aluminio}]
+    title = {"text": 'Cotação LME'}
+    xAxis = {"categories": data, "crosshair": 'true'}
+    yAxis = {"title": {"text": 'Valor'}}
+
+    return render_template('grafico.html', chartID=chartID, chart=chart,
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
+
+
+@app.route('/grafico/chumbo')
+def lme_grafico_chumbo(chartID='chart_ID', chart_type='line',
+                       chart_height=350):
+    hoje = datetime.now()
+    periodo = hoje - timedelta(weeks=4)
+
+    parse.uses_netloc.append("postgres")
+    url = parse.urlparse(os.environ["DATABASE_URL"])
+
+    conn = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
+
+    query = """
+            SELECT *
+            FROM cotacao_lme
+            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            """
+
+    query_params = {'inicio': periodo, 'fim': hoje}
+
+    cotacaoatual = pd.read_sql(query, conn, params=query_params)
+
+    cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                            'Estanho', 'Niquel', 'Dolar']
+
+    df = pd.DataFrame(cotacaoatual)
+
+    df['Data'] = pd.to_datetime(df['Data'], utc=True)
+
+    df = df.set_index(df['Data'])
+
+    df = df.drop('Data', axis=1)
+
+    df.fillna(method='ffill', inplace=True)
+
+    chumbo = list(df['Chumbo'])
+    data = list(df.index.strftime('%d/%m/%y'))
+
+    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
+    series = [{"name": 'Chumbo', "data": chumbo}]
+    title = {"text": 'Cotação LME'}
+    xAxis = {"categories": data, "crosshair": 'true'}
+    yAxis = {"title": {"text": 'Valor'}}
+
+    return render_template('grafico.html', chartID=chartID, chart=chart,
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
+
+
+@app.route('/grafico/estanho')
+def lme_grafico_estanho(chartID='chart_ID', chart_type='line',
+                        chart_height=350):
+    hoje = datetime.now()
+    periodo = hoje - timedelta(weeks=4)
+
+    parse.uses_netloc.append("postgres")
+    url = parse.urlparse(os.environ["DATABASE_URL"])
+
+    conn = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
+
+    query = """
+            SELECT *
+            FROM cotacao_lme
+            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            """
+
+    query_params = {'inicio': periodo, 'fim': hoje}
+
+    cotacaoatual = pd.read_sql(query, conn, params=query_params)
+
+    cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                            'Estanho', 'Niquel', 'Dolar']
+
+    df = pd.DataFrame(cotacaoatual)
+
+    df['Data'] = pd.to_datetime(df['Data'], utc=True)
+
+    df = df.set_index(df['Data'])
+
+    df = df.drop('Data', axis=1)
+
+    df.fillna(method='ffill', inplace=True)
+
+    estanho = list(df['Estanho'])
+    data = list(df.index.strftime('%d/%m/%y'))
+
+    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
+    series = [{"name": 'Estanho', "data": estanho}]
+    title = {"text": 'Cotação LME'}
+    xAxis = {"categories": data, "crosshair": 'true'}
+    yAxis = {"title": {"text": 'Valor'}}
+
+    return render_template('grafico.html', chartID=chartID, chart=chart,
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
+
+
+@app.route('/grafico/niquel')
+def lme_grafico_niquel(chartID='chart_ID', chart_type='line',
+                       chart_height=350):
+    hoje = datetime.now()
+    periodo = hoje - timedelta(weeks=4)
+
+    parse.uses_netloc.append("postgres")
+    url = parse.urlparse(os.environ["DATABASE_URL"])
+
+    conn = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
+
+    query = """
+            SELECT *
+            FROM cotacao_lme
+            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            """
+
+    query_params = {'inicio': periodo, 'fim': hoje}
+
+    cotacaoatual = pd.read_sql(query, conn, params=query_params)
+
+    cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                            'Estanho', 'Niquel', 'Dolar']
+
+    df = pd.DataFrame(cotacaoatual)
+
+    df['Data'] = pd.to_datetime(df['Data'], utc=True)
+
+    df = df.set_index(df['Data'])
+
+    df = df.drop('Data', axis=1)
+
+    df.fillna(method='ffill', inplace=True)
+
+    niquel = list(df['Niquel'])
+    data = list(df.index.strftime('%d/%m/%y'))
+
+    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
+    series = [{"name": 'Níquel', "data": niquel}]
+    title = {"text": 'Cotação LME'}
+    xAxis = {"categories": data, "crosshair": 'true'}
+    yAxis = {"title": {"text": 'Valor'}}
+
+    return render_template('grafico.html', chartID=chartID, chart=chart,
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
+
+
+@app.route('/grafico/dolar')
+def lme_grafico_dolar(chartID='chart_ID', chart_type='line', chart_height=350):
+    hoje = datetime.now()
+    periodo = hoje - timedelta(weeks=4)
+
+    parse.uses_netloc.append("postgres")
+    url = parse.urlparse(os.environ["DATABASE_URL"])
+
+    conn = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
+
+    query = """
+            SELECT *
+            FROM cotacao_lme
+            WHERE "Date" BETWEEN %(inicio)S AND %(fim)S
+            """
+
+    query_params = {'inicio': periodo, 'fim': hoje}
+
+    cotacaoatual = pd.read_sql(query, conn, params=query_params)
+
+    cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                            'Estanho', 'Niquel', 'Dolar']
+
+    df = pd.DataFrame(cotacaoatual)
+
+    df['Data'] = pd.to_datetime(df['Data'], utc=True)
+
+    df = df.set_index(df['Data'])
+
+    df = df.drop('Data', axis=1)
+
+    df.fillna(method='ffill', inplace=True)
+
+    dolar = list(df['Dolar'])
+    data = list(df.index.strftime('%d/%m/%y'))
+
+    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
+    series = [{"name": 'Dolar', "data": dolar}]
+    title = {"text": 'Cotação LME'}
+    xAxis = {"categories": data, "crosshair": 'true'}
+    yAxis = {"title": {"text": 'Valor'}}
+
+    return render_template('grafico.html', chartID=chartID, chart=chart,
+                           series=series, title=title, xAxis=xAxis,
+                           yAxis=yAxis)
 
 
 @app.route('/lme/cobre')
