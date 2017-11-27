@@ -590,6 +590,7 @@ def lme_cotacao(chartID='chart_ID', chart_type='line', chart_height=350,
                                cotacao_semana_02, media_semana_02,
                                cotacao_semana_01, media_semana_01])
 
+
 @app.route('/lme/cobre')
 def lme_cobre(chartID='chart_ID', chart_type='line', chart_height=350):
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
