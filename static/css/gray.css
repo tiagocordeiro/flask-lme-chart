@@ -1,6 +1,6 @@
 table.dataframe, .dataframe th, .dataframe td {
   border: none;
-  border-bottom: 1px solid #D4C97E;
+  border-bottom: 1px solid #d1d1d1;
   border-collapse: collapse;
   text-align:left;
   padding: 10px;
@@ -17,7 +17,7 @@ tbody tr td:first-child {
 }
 
 .cotacaolme th {
-    background-color: #D4C97E;
+    background-color: #d1d1d1;
     color: black;
 }
 
@@ -31,20 +31,20 @@ tr:nth-child(even)	{ background-color:#fff; }
 tr:hover            { background-color: #ffff99;}
 
 .mediasemana th {
-    background-color: #FAF9AD;
+    background-color: #d1d1d1;
     color: black;
 }
 
 .mediasemana tr {
-    background-color: #FAF9AD;
+    background-color: #d1d1d1;
 }
 
 .mediasemana td {
-    background-color: #FAF9AD;
+    background-color: #d1d1d1;
 }
 
 .mediaperiodohor th,
 .mediaperiodohor tr,
 .mediaperiodohor tf {
-    background-color: #FAF9AD;
+    background-color: #d1d1d1;
 }
