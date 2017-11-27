@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description" content="Acompanhe a cotação da bolsa de metais de Londres">
+		<meta name="keywords" content="Cotação LME, London Metal Exchange">
+		<meta name="author" content="Mulher Gorila">
+		<meta charset="utf-8">
+
+		<!--Import Google Icon Font-->
+      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+		 <link href="../static/css/materialize.min.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+		 <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+
+		<!-- SUPPORT FOR IE6-8 OF HTML5 ELEMENTS -->
+		<!--[if lt IE 9]>
+		    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<!-- <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.ico') }}"> -->
+		{% block head %}
+			<title>{% block title %} Cotação LME {% endblock %}</title>
+		{% endblock %}
+	</head>
+
+	<body>
+		<nav>
+            <div class="nav-wrapper blue-grey darken-2">
+              <a href="/lme" class="brand-logo">Cotação LME</a>
+              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="/lme/cobre">Cobre</a></li>
+                <li><a href="/lme/zinco">Zinco</a></li>
+                <li><a href="/lme/aluminio">Alumínio</a></li>
+                <li><a href="/lme/chumbo">Chumbo</a></li>
+                <li><a href="/lme/estanho">Estanho</a></li>
+                <li><a href="/lme/niquel">Níquel</a></li>
+                <li><a href="/lme/dolar">Dolar</a></li>
+              </ul>
+              <ul class="side-nav" id="mobile-demo">
+                <li><a href="/lme/cobre">Cobre</a></li>
+                <li><a href="/lme/zinco">Zinco</a></li>
+                <li><a href="/lme/aluminio">Alumínio</a></li>
+                <li><a href="/lme/chumbo">Chumbo</a></li>
+                <li><a href="/lme/estanho">Estanho</a></li>
+                <li><a href="/lme/niquel">Níquel</a></li>
+                <li><a href="/lme/dolar">Dolar</a></li>
+              </ul>
+            </div>
+        </nav>
+        <div id={{ chartID|safe }} class="chart" style="width: 100%"></div>
+        <div style="overflow-x: auto">
+            {% for tabela in tabelas %}
+                {{ tabela|safe }}
+            {% endfor %}
+            <!--{% include 'mesclado.html' %}-->
+            {{ media_periodo_pivot|safe }}
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <p><strong>Metais</strong> – Os valores da cotação LME referem-se à média entre o CASH BUYER e CASH SELLER &amp; SETTLEMENT em US$/T</p>
+            <p><strong>Dólar</strong> – R$/US$ – Esta taxa de câmbio mostra o valor de 1 Dólar Americano em Reais Brasileiros. Esta taxa de câmbio é uma média de taxas de várias fontes. Estas incluem exchanges, corretoras, jornais e fontes de bancos centrais.</p>
+          </div>
+        </div>
+		<script>
+			var chart_id = {{ chartID|safe }}
+			var series = {{ series|safe }}
+			var title = {{ title|safe }}
+			var xAxis = {{ xAxis|safe }}
+			var yAxis = {{ yAxis|safe }}
+			var chart = {{ chart|safe }}
+		</script>
+			<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+			<script src="https://code.highcharts.com/highcharts.js"></script>
+			<script src="../static/js/main.js"></script>
+			<script src="../static/js/materialize.min.js"></script>
+	</body>
+</html>
