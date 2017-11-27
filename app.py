@@ -701,11 +701,11 @@ def lme_grafico_cobre(chartID='chart_ID', chart_type='line', chart_height=350):
 
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
     series = [{"name": 'Cobre', "data": cobre}]
-    title = {"text": 'Cotação LME'}
+    title = {"text": 'Cotação Cobre'}
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico.html', chartID=chartID, chart=chart,
+    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis,
                            yAxis=yAxis)
 
@@ -754,11 +754,11 @@ def lme_grafico_zinco(chartID='chart_ID', chart_type='line', chart_height=350):
 
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
     series = [{"name": 'Zinco', "data": zinco}]
-    title = {"text": 'Cotação LME'}
+    title = {"text": 'Cotação Zinco'}
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico.html', chartID=chartID, chart=chart,
+    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis,
                            yAxis=yAxis)
 
@@ -808,11 +808,11 @@ def lme_grafico_aluminio(chartID='chart_ID', chart_type='line',
 
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
     series = [{"name": 'Alumínio', "data": aluminio}]
-    title = {"text": 'Cotação LME'}
+    title = {"text": 'Cotação Alumínio'}
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico.html', chartID=chartID, chart=chart,
+    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis,
                            yAxis=yAxis)
 
@@ -862,11 +862,11 @@ def lme_grafico_chumbo(chartID='chart_ID', chart_type='line',
 
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
     series = [{"name": 'Chumbo', "data": chumbo}]
-    title = {"text": 'Cotação LME'}
+    title = {"text": 'Cotação Chumbo'}
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico.html', chartID=chartID, chart=chart,
+    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis,
                            yAxis=yAxis)
 
@@ -916,11 +916,11 @@ def lme_grafico_estanho(chartID='chart_ID', chart_type='line',
 
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
     series = [{"name": 'Estanho', "data": estanho}]
-    title = {"text": 'Cotação LME'}
+    title = {"text": 'Cotação Estanho'}
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico.html', chartID=chartID, chart=chart,
+    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis,
                            yAxis=yAxis)
 
@@ -970,11 +970,11 @@ def lme_grafico_niquel(chartID='chart_ID', chart_type='line',
 
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
     series = [{"name": 'Níquel', "data": niquel}]
-    title = {"text": 'Cotação LME'}
+    title = {"text": 'Cotação Níquel'}
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico.html', chartID=chartID, chart=chart,
+    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis,
                            yAxis=yAxis)
 
@@ -1023,11 +1023,11 @@ def lme_grafico_dolar(chartID='chart_ID', chart_type='line', chart_height=350):
 
     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
     series = [{"name": 'Dolar', "data": dolar}]
-    title = {"text": 'Cotação LME'}
+    title = {"text": 'Cotação Dolar'}
     xAxis = {"categories": data, "crosshair": 'true'}
     yAxis = {"title": {"text": 'Valor'}}
 
-    return render_template('grafico.html', chartID=chartID, chart=chart,
+    return render_template('grafico_simples.html', chartID=chartID, chart=chart,
                            series=series, title=title, xAxis=xAxis,
                            yAxis=yAxis)
 
