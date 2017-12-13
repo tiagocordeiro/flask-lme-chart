@@ -10,7 +10,7 @@ Jinja2==2.10
 MarkupSafe==1.0
 more-itertools==4.0.1
 numpy==1.13.3
-pandas==0.21.0
+pandas==0.21.1
 python-dateutil==2.6.1
 pytz==2017.3
 Quandl==3.2.1
