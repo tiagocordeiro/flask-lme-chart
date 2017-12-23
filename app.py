@@ -78,28 +78,9 @@ media_ultima_semana = pd.DataFrame(df_completo[semana:now].mean())
 Rotas
 """
 
-
 @app.route('/')
 @app.route('/index')
 @app.route('/lme')
-def index(chartID='chart_ID', chart_type='line', chart_height=350):
-    chart = {"renderTo": chartID, "type": chart_type, "height": chart_height}
-    series = [{"name": 'Cobre', "data": cobre},
-              {"name": 'Zinco', "data": zinco, "visible": 'false'},
-              {"name": 'Alumínio', "data": aluminio, "visible": 'false'},
-              {"name": 'Chumbo', "data": chumbo, "visible": 'false'},
-              {"name": 'Estanho', "data": estanho, "visible": 'false'},
-              {"name": 'Níquel', "data": niquel, "visible": 'false'},
-              {"name": 'Dolar', "data": dolar, "visible": 'false'}
-              ]
-    title = {"text": 'Cotação LME'}
-    xAxis = {"categories": data, "crosshair": 'true'}
-    yAxis = {"title": {"text": 'Valor'}}
-    return render_template('index.html', chartID=chartID, chart=chart,
-                           series=series, title=title, xAxis=xAxis,
-                           yAxis=yAxis)
-
-
 @app.route('/lme-dashboard')
 def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     qt_semanas = 4
