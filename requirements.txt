@@ -17,6 +17,6 @@ Quandl==3.3.0
 requests==2.18.4
 six==1.11.0
 urllib3==1.22
-Werkzeug==0.13
+Werkzeug==0.14
 psycopg2==2.7.3.2
 SQLAlchemy==1.1.15
