@@ -90,7 +90,7 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     semanaNumero = hoje.strftime("%U")
 
     if semanaNumero == "00":
-        hoje = datetime.now() - timedelta(weeks=1)
+        hoje = datetime.now() - timedelta(days=hoje.isoweekday())
     else:
         pass
 
