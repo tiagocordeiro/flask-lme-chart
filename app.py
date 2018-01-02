@@ -86,6 +86,12 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
     qt_semanas = 4
     hoje = datetime.now()
     diadasemana = hoje.isoweekday()
+    semanaNumero = hoje.strftime("%U")
+
+    if semanaNumero == "00":
+        hoje = datetime.now() - timedelta(weeks=1)
+    else:
+        pass
 
     if diadasemana == 1:
         hoje = datetime.now() - timedelta(weeks=1)
