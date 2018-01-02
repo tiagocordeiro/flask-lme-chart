@@ -78,6 +78,7 @@ media_ultima_semana = pd.DataFrame(df_completo[semana:now].mean())
 Rotas
 """
 
+
 @app.route('/')
 @app.route('/index')
 @app.route('/lme')
