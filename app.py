@@ -332,18 +332,23 @@ def lme_dashboard(chartID='chart_ID', chart_type='line', chart_height=350):
                                cotacao_semana_01, media_semana_01])
 
 
-@app.route('/cotacao/', defaults={'colorscheme': 'style'})
-@app.route('/cotacao/<colorscheme>')
+@app.route('/cotacao/')
 def lme_cotacao(chartID='chart_ID', chart_type='line', chart_height=350,
                 colorscheme=None):
     qt_semanas = 4
     hoje = datetime.now()
-    # diadasemana = hoje.isoweekday()
+    diadasemana = hoje.isoweekday()
+    semanaNumero = hoje.strftime("%U")
 
-    # if diadasemana == 1:
-    #     hoje = datetime.now() - timedelta(weeks=1)
-    # else:
-    #     pass
+    if semanaNumero == "00":
+        hoje = datetime.now() - timedelta(days=hoje.isoweekday())
+    else:
+        pass
+
+    if diadasemana == 1:
+        hoje = datetime.now() - timedelta(weeks=1)
+    else:
+        pass
 
     periodo = hoje - timedelta(weeks=4)
 
