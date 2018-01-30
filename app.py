@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -1153,6 +1153,65 @@ def deshboard(chartID='chart_ID', chart_type='line', chart_height=350):
 @app.route('/lme/tabela')
 def mostra_tabela():
     return render_template('mesclado.html')
+
+
+@app.route('/summary', methods=['GET'])
+def summary():
+
+    parse.uses_netloc.append("postgres")
+    url = parse.urlparse(os.environ["DATABASE_URL"])
+
+    conn = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
+
+    query = """
+            SELECT *
+            FROM cotacao_lme
+            WHERE "Dolar" IS NOT NULL
+            ORDER BY "Date" DESC LIMIT 1
+            """
+
+    cotacaoatual = pd.read_sql(query, conn)
+
+    cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                            'Estanho', 'Niquel', 'Dolar']
+
+    df = pd.DataFrame(cotacaoatual)
+
+    df['Data'] = pd.to_datetime(df['Data'], utc=True)
+
+    df = df.set_index(df['Data'])
+
+    df = df.drop('Data', axis=1)
+
+    df.fillna(method='ffill', inplace=True)
+
+    cobre = list(df['Cobre'])
+    zinco = list(df['Zinco'])
+    aluminio = list(df['Aluminio'])
+    chumbo = list(df['Chumbo'])
+    estanho = list(df['Estanho'])
+    niquel = list(df['Niquel'])
+    dolar = list(df['Dolar'])
+    data = list(df.index.strftime('%d/%m/%y'))
+
+    response = jsonify(
+        cobre=cobre,
+        zinco=zinco,
+        aluminio=aluminio,
+        chumbo=chumbo,
+        estanho=estanho,
+        niquel=niquel,
+        dolar=dolar,
+        data=data)
+
+    response.headers.add("Access-Control-Allow-Origin", '*')
+    return response
 
 
 if __name__ == "__main__":
