@@ -11,7 +11,7 @@ MarkupSafe==1.0
 more-itertools==4.1.0
 numpy==1.14.2
 pandas==0.22.0
-python-dateutil==2.6.1
+python-dateutil==2.7.0
 pytz==2018.3
 Quandl==3.3.0
 requests==2.18.4
