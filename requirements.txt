@@ -9,14 +9,14 @@ itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
 more-itertools==4.1.0
-numpy==1.14.0
+numpy==1.14.2
 pandas==0.22.0
 python-dateutil==2.7.0
-pytz==2017.3
+pytz==2018.3
 Quandl==3.3.0
 requests==2.18.4
 six==1.11.0
 urllib3==1.22
 Werkzeug==0.14.1
-psycopg2==2.7.3.2
+psycopg2==2.7.4
 SQLAlchemy==1.2.2
