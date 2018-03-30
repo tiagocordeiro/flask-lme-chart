@@ -11,7 +11,7 @@ quandl.ApiConfig.api_key = os.environ.get('QUANDL_KEY')
 def updateDatabase():
     todo_periodo = quandl.get(["LME/PR_CU.2", "LME/PR_ZI.2", "LME/PR_AL.2",
                                "LME/PR_PB.2", "LME/PR_TN.2", "LME/PR_NI.2",
-                               "CURRFX/USDBRL.1"], start_date="2012-01-03",
+                               "BUNDESBANK/BBEX3_D_BRL_USD_CA_AB_000"], start_date="2012-01-03",
                               returns="pandas")
 
     todo_periodo.columns = ['Cobre', 'Zinco', 'Aluminio', 'Chumbo',
