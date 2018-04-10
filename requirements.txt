@@ -12,7 +12,7 @@ more-itertools==4.1.0
 numpy==1.14.2
 pandas==0.22.0
 python-dateutil==2.7.2
-pytz==2018.3
+pytz==2018.4
 Quandl==3.3.0
 requests==2.18.4
 six==1.11.0
