@@ -346,7 +346,7 @@ def lme_cotacao(chartID='chart_ID', chart_type='line', chart_height=350,
         pass
 
     if diadasemana == 1:
-        hoje = datetime.now() - timedelta(weeks=1)
+        hoje = datetime.now() - timedelta(days=3)
     else:
         pass
 
