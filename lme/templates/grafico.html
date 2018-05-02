@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description" content="Acompanhe a cotação da bolsa de metais de Londres">
+		<meta name="keywords" content="Cotação LME, London Metal Exchange">
+		<meta name="author" content="Mulher Gorila">
+		<meta charset="utf-8">
+
+		<!--Import Google Icon Font-->
+      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+		 <link href="../static/css/materialize.min.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+		 <link href="../static/css/{{ colorscheme|safe }}.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+
+		<!-- SUPPORT FOR IE6-8 OF HTML5 ELEMENTS -->
+		<!--[if lt IE 9]>
+		    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<!-- <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.ico') }}"> -->
+		{% block head %}
+			<title>{% block title %} Cotação LME {% endblock %}</title>
+		{% endblock %}
+	</head>
+
+	<body>
+		<nav>
+            <div class="nav-wrapper blue-grey darken-2">
+              <a href="/grafico/" class="brand-logo">Cotação LME</a>
+              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="/grafico/">Todos</a></li>
+                <li><a href="cobre">Cobre</a></li>
+                <li><a href="zinco">Zinco</a></li>
+                <li><a href="aluminio">Alumínio</a></li>
+                <li><a href="chumbo">Chumbo</a></li>
+                <li><a href="estanho">Estanho</a></li>
+                <li><a href="niquel">Níquel</a></li>
+                <li><a href="dolar">Dolar</a></li>
+              </ul>
+              <ul class="side-nav" id="mobile-demo">
+                <li><a href="cobre">Cobre</a></li>
+                <li><a href="zinco">Zinco</a></li>
+                <li><a href="aluminio">Alumínio</a></li>
+                <li><a href="chumbo">Chumbo</a></li>
+                <li><a href="estanho">Estanho</a></li>
+                <li><a href="niquel">Níquel</a></li>
+                <li><a href="dolar">Dolar</a></li>
+              </ul>
+            </div>
+		</nav>
+        <div id={{ chartID|safe }} class="chart" style="width: 100%"></div>
+		<script>
+			var chart_id = {{ chartID|safe }}
+			var series = {{ series|safe }}
+			var title = {{ title|safe }}
+			var xAxis = {{ xAxis|safe }}
+			var yAxis = {{ yAxis|safe }}
+			var chart = {{ chart|safe }}
+		</script>
+			<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+			<script src="https://code.highcharts.com/highcharts.js"></script>
+			<script src="../static/js/main.js"></script>
+			<script src="../static/js/materialize.min.js"></script>
+	</body>
+</html>

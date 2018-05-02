@@ -1,0 +1,50 @@
+table.dataframe, .dataframe th, .dataframe td {
+  border: none;
+  border-bottom: 1px solid #D4C97E;
+  border-collapse: collapse;
+  text-align:left;
+  padding: 10px;
+  margin-bottom: 0px;
+  /*font-size: 0.9em;*/
+}
+
+thead tr th:first-child,
+tbody tr td:first-child {
+  width: 8em;
+  min-width: 8em;
+  max-width: 8em;
+  word-break: break-all;
+}
+
+.cotacaolme th {
+    background-color: #D4C97E;
+    color: black;
+}
+
+.cotacaolme thead tr:nth-of-type(2) {
+    display: none;
+}
+
+tr:nth-child(odd)	{ background-color:#eee; }
+tr:nth-child(even)	{ background-color:#fff; }
+
+tr:hover            { background-color: #ffff99;}
+
+.mediasemana th {
+    background-color: #FAF9AD;
+    color: black;
+}
+
+.mediasemana tr {
+    background-color: #FAF9AD;
+}
+
+.mediasemana td {
+    background-color: #FAF9AD;
+}
+
+.mediaperiodohor th,
+.mediaperiodohor tr,
+.mediaperiodohor tf {
+    background-color: #FAF9AD;
+}
