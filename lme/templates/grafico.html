@@ -26,6 +26,31 @@
 	</head>
 
 	<body>
+		<nav>
+            <div class="nav-wrapper blue-grey darken-2">
+              <a href="/grafico/" class="brand-logo">Cotação LME</a>
+              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="#">Todos</a></li>
+                <li><a href="#">Cobre</a></li>
+                <li><a href="#">Zinco</a></li>
+                <li><a href="#">Alumínio</a></li>
+                <li><a href="#">Chumbo</a></li>
+                <li><a href="#">Estanho</a></li>
+                <li><a href="#">Níquel</a></li>
+                <li><a href="#">Dolar</a></li>
+              </ul>
+              <ul class="side-nav" id="mobile-demo">
+                <li><a href="#">Cobre</a></li>
+                <li><a href="#">Zinco</a></li>
+                <li><a href="#">Alumínio</a></li>
+                <li><a href="#">Chumbo</a></li>
+                <li><a href="#">Estanho</a></li>
+                <li><a href="#">Níquel</a></li>
+                <li><a href="#">Dolar</a></li>
+              </ul>
+            </div>
+		</nav>
         <div id={{ chartID|safe }} class="chart" style="width: 100%"></div>
 		<script>
 			var chart_id = {{ chartID|safe }}
