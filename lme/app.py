@@ -85,7 +85,6 @@ def create_app():
                                series=series, title=title, xAxis=xAxis,
                                yAxis=yAxis)
 
-
     @application.route('/cotacao/')
     def lme_cotacao(chartID='chart_ID', chart_type='line', chart_height=350,
                     colorscheme=None):
@@ -93,7 +92,6 @@ def create_app():
         periodo_cotacao = periodo_data()
         hoje = periodo_cotacao['fim']
         periodo = periodo_cotacao['inicio']
-
 
         parse.uses_netloc.append("postgres")
         url = parse.urlparse(os.environ["DATABASE_URL"])
@@ -343,10 +341,61 @@ def create_app():
                                    cotacao_semana_02, media_semana_02,
                                    cotacao_semana_01, media_semana_01])
 
+    @application.route('/latest-values')
+    def latest_values():
+        parse.uses_netloc.append("postgres")
+        url = parse.urlparse(os.environ["DATABASE_URL"])
 
-    def periodo_data(fim=datetime.now(), inicio=datetime.now() - timedelta(weeks=4)):
-        fim = fim
-        inicio = inicio
+        conn = psycopg2.connect(
+            database=url.path[1:],
+            user=url.username,
+            password=url.password,
+            host=url.hostname,
+            port=url.port
+        )
+
+        # cotacaoatual = pd.read_sql("SELECT * FROM cotacao_lme")
+
+        query = """
+                        SELECT *
+                        FROM cotacao_lme
+                        ORDER BY "Date" DESC LIMIT 1
+                        """
+
+        values = pd.read_sql(query, conn)
+
+        values.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                          'Estanho', 'Niquel', 'Dolar']
+
+        df = pd.DataFrame(values)
+
+        df['Data'] = pd.to_datetime(df['Data'], utc=True)
+        latest_date = pd.to_datetime(df['Data'], utc=True)
+        print(latest_date[0])
+        print(latest_date[0].strftime('%Y-%m-%d'))
+
+        df = df.set_index(df['Data'])
+        df = df.drop('Data', axis=1)
+
+        cobre = float(df['Cobre'])
+        zinco = float(df['Zinco'])
+        aluminio = float(df['Aluminio'])
+        chumbo = float(df['Chumbo'])
+        estanho = float(df['Estanho'])
+        niquel = float(df['Niquel'])
+        dolar = float(df['Dolar'])
+
+        response = jsonify(data=latest_date[0].strftime('%Y-%m-%d'),
+                           cobre=cobre, zinco=zinco, aluminio=aluminio,
+                           chumbo=chumbo, estanho=estanho, niquel=niquel,
+                           dolar=dolar)
+
+        return latest_date[0]
+        # return response
+
+    def periodo_data():
+        fim = latest_values()
+        inicio = fim - timedelta(weeks=4)
 
         dia_semana = fim.isoweekday()
         semana_numero = fim.strftime("%U")
@@ -362,6 +411,5 @@ def create_app():
             pass
 
         return {'inicio': inicio, 'fim': fim}
-
 
     return application
