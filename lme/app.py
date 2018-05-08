@@ -70,12 +70,12 @@ def create_app():
         chart = {"renderTo": chartID, "type": chart_type,
                  "height": chart_height}
         series = [{"name": 'Cobre', "data": cobre},
-                  {"name": 'Zinco', "data": zinco, "visible": 'false'},
-                  {"name": 'Alumínio', "data": aluminio, "visible": 'false'},
-                  {"name": 'Chumbo', "data": chumbo, "visible": 'false'},
-                  {"name": 'Estanho', "data": estanho, "visible": 'false'},
-                  {"name": 'Níquel', "data": niquel, "visible": 'false'},
-                  {"name": 'Dolar', "data": dolar, "visible": 'false'}
+                  {"name": 'Zinco', "data": zinco, "visible": False},
+                  {"name": 'Alumínio', "data": aluminio, "visible": False},
+                  {"name": 'Chumbo', "data": chumbo, "visible": False},
+                  {"name": 'Estanho', "data": estanho, "visible": False},
+                  {"name": 'Níquel', "data": niquel, "visible": False},
+                  {"name": 'Dolar', "data": dolar, "visible": False}
                   ]
         title = {"text": 'Cotação LME'}
         xAxis = {"categories": data, "crosshair": 'true'}
