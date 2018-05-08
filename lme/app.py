@@ -35,10 +35,10 @@ def create_app():
         )
 
         query = """
-                    SELECT *
-                    FROM cotacao_lme
-                    WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
-                    """
+                SELECT *
+                FROM cotacao_lme
+                WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
+                """
 
         query_params = {'inicio': periodo, 'fim': hoje}
 
@@ -128,6 +128,7 @@ def create_app():
         df = df.drop('Data', axis=1)
 
         df.fillna(method='ffill', inplace=True)
+        df.fillna(method='bfill', inplace=True)
 
         cobre = list(df['Cobre'])
         zinco = list(df['Zinco'])
@@ -341,7 +342,7 @@ def create_app():
                                    cotacao_semana_02, media_semana_02,
                                    cotacao_semana_01, media_semana_01])
 
-    @application.route('/latest-values')
+
     def latest_values():
         parse.uses_netloc.append("postgres")
         url = parse.urlparse(os.environ["DATABASE_URL"])
@@ -357,10 +358,10 @@ def create_app():
         # cotacaoatual = pd.read_sql("SELECT * FROM cotacao_lme")
 
         query = """
-                        SELECT *
-                        FROM cotacao_lme
-                        ORDER BY "Date" DESC LIMIT 1
-                        """
+                SELECT * FROM cotacao_lme
+                WHERE cotacao_lme NOTNULL
+                ORDER BY "Date" DESC LIMIT 1
+                """
 
         values = pd.read_sql(query, conn)
 
@@ -369,13 +370,15 @@ def create_app():
 
         df = pd.DataFrame(values)
 
-        df['Data'] = pd.to_datetime(df['Data'], utc=True)
-        latest_date = pd.to_datetime(df['Data'], utc=True)
+        df['Data'] = latest_date = pd.to_datetime(df['Data'], utc=True)
         print(latest_date[0])
         print(latest_date[0].strftime('%Y-%m-%d'))
 
         df = df.set_index(df['Data'])
         df = df.drop('Data', axis=1)
+
+        df.fillna(method='ffill', inplace=True)
+        df.fillna(method='bfill', inplace=True)
 
         cobre = float(df['Cobre'])
         zinco = float(df['Zinco'])
