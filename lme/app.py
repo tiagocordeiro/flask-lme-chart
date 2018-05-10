@@ -14,7 +14,7 @@ def create_app():
     application = Flask(__name__)
 
     @application.route('/')
-    def index():
+    def index(chartID='chart_ID', chart_type='line', chart_height=350):
         return 'hello'
 
     @application.route('/grafico/')
