@@ -34,10 +34,10 @@ def create_app():
         # cotacaoatual = pd.read_sql("SELECT * FROM cotacao_lme")
 
         query = """
-                        SELECT *
-                        FROM cotacao_lme
-                        WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
-                        """
+                SELECT *
+                FROM cotacao_lme
+                WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
+                """
 
         query_params = {'inicio': periodo, 'fim': hoje}
 
