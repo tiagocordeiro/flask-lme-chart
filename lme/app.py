@@ -268,7 +268,6 @@ def create_app():
                                    cotacao_semana_02, media_semana_02,
                                    cotacao_semana_01, media_semana_01])
 
-
     @application.route('/grafico/')
     def grafico(chartID='chart_ID', chart_type='line', chart_height=350):
         periodo_grafico = periodo_data()
@@ -651,7 +650,6 @@ def create_app():
         response.headers.add("Access-Control-Allow-Origin", '*')
         return response
 
-
     def latest_values():
         parse.uses_netloc.append("postgres")
         url = parse.urlparse(os.environ["DATABASE_URL"])
@@ -663,8 +661,6 @@ def create_app():
             host=url.hostname,
             port=url.port
         )
-
-        # cotacaoatual = pd.read_sql("SELECT * FROM cotacao_lme")
 
         query = """
                 SELECT * FROM cotacao_lme
@@ -689,21 +685,7 @@ def create_app():
         df.fillna(method='ffill', inplace=True)
         df.fillna(method='bfill', inplace=True)
 
-        cobre = float(df['Cobre'])
-        zinco = float(df['Zinco'])
-        aluminio = float(df['Aluminio'])
-        chumbo = float(df['Chumbo'])
-        estanho = float(df['Estanho'])
-        niquel = float(df['Niquel'])
-        dolar = float(df['Dolar'])
-
-        response = jsonify(data=latest_date[0].strftime('%Y-%m-%d'),
-                           cobre=cobre, zinco=zinco, aluminio=aluminio,
-                           chumbo=chumbo, estanho=estanho, niquel=niquel,
-                           dolar=dolar)
-
         return latest_date[0]
-        # return response
 
     def periodo_data():
         fim = latest_values()
