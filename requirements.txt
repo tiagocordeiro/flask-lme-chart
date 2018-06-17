@@ -18,7 +18,7 @@ requests==2.18.4
 six==1.11.0
 urllib3==1.22
 Werkzeug==0.14.1
-psycopg2-binary==2.7.4
+psycopg2-binary==2.7.5
 SQLAlchemy==1.2.8
 gunicorn==19.8.1
 python-dotenv==0.8.2
