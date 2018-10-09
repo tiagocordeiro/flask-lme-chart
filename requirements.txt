@@ -20,5 +20,5 @@ urllib3==1.22
 Werkzeug==0.14.1
 psycopg2-binary==2.7.4
 SQLAlchemy==1.2.8
-gunicorn==19.8.1
+gunicorn==19.9.0
 python-dotenv==0.8.2
