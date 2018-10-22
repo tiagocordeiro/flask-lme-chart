@@ -13,7 +13,7 @@ numpy==1.14.4
 pandas==0.23.0
 python-dateutil==2.7.3
 pytz==2018.4
-Quandl==3.3.0
+Quandl==3.4.3
 requests==2.18.4
 six==1.11.0
 urllib3==1.22
