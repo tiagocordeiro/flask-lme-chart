@@ -6,4 +6,9 @@ py==1.7.0
 pytest==3.9.2
 pytest-flask==0.14.0
 
+# CodeStyle
+pycodestyle==2.4.0
+pyflakes==2.0.0
+
+
 -r requirements.txt
