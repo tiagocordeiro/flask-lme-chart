@@ -14,6 +14,8 @@ before_script:
   - python lme.py
 # command to run tests
 script:
+  - pycodestyle lme.py lme/app.py
+  - pyflakes lme.py lme/app.py
   - pytest
 #  - flake8 lme/app.py lme.py
 #  - py.test --cov=pytocli tests/
