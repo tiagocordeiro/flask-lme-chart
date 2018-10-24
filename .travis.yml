@@ -1,11 +1,21 @@
 language: python
 python:
-  - "3.6.5"
+  - "3.6.6"
+services:
+  postgresql
+addons:
+  postgresql: '9.5'
 # command to install dependencies
-install: "pip install -r requirements-dev.txt"
+install:
+  - cp contrib/env-sample .env
+  - pip install -r requirements-dev.txt
+before_script:
+  - psql -c "CREATE DATABASE travis_ci_db;" -U postgres
+  - python lme.py
 # command to run tests
 script:
-  - flake8 lme/app.py lme.py
+  - pytest
+#  - flake8 lme/app.py lme.py
 #  - py.test --cov=pytocli tests/
 #  - python -m doctest README.md
 # after_success:
