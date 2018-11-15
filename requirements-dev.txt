@@ -3,7 +3,7 @@ atomicwrites==1.2.1
 attrs==18.2.0
 pluggy==0.8.0
 py==1.7.0
-pytest==3.9.2
+pytest==4.0.0
 pytest-flask==0.14.0
 
 # CodeStyle
