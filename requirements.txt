@@ -24,7 +24,7 @@ python-dateutil==2.7.5
 python-dotenv==0.9.1
 pytz==2018.7
 Quandl==3.4.5
-requests==2.20.1
+requests==2.21.0
 six==1.11.0
 SQLAlchemy==1.2.14
 urllib3==1.24.1
