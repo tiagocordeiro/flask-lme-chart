@@ -26,6 +26,6 @@ pytz==2018.7
 Quandl==3.4.5
 requests==2.20.1
 six==1.11.0
-SQLAlchemy==1.2.14
+SQLAlchemy==1.2.15
 urllib3==1.24.1
 Werkzeug==0.14.1
