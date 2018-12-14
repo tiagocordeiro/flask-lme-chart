@@ -21,7 +21,7 @@ pyasn1==0.4.4
 pycparser==2.19
 pyOpenSSL==18.0.0
 python-dateutil==2.7.5
-python-dotenv==0.9.1
+python-dotenv==0.10.1
 pytz==2018.7
 Quandl==3.4.5
 requests==2.20.1
