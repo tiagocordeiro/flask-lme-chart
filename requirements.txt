@@ -23,7 +23,7 @@ pyOpenSSL==18.0.0
 python-dateutil==2.7.5
 python-dotenv==0.9.1
 pytz==2018.7
-Quandl==3.4.5
+Quandl==3.4.6
 requests==2.20.1
 six==1.11.0
 SQLAlchemy==1.2.14
