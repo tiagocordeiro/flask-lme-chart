@@ -22,7 +22,7 @@ pycparser==2.19
 pyOpenSSL==19.0.0
 python-dateutil==2.8.0
 python-dotenv==0.10.1
-pytz==2018.9
+pytz==2019.2
 Quandl==3.4.6
 requests==2.21.0
 six==1.12.0
