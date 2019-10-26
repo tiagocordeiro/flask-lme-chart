@@ -1,10 +1,11 @@
-from flask import Flask, render_template, jsonify
-from datetime import datetime, timedelta
-from bs4 import BeautifulSoup
-import pandas as pd
 import os
+from datetime import datetime, timedelta
 from urllib import parse
+
+import pandas as pd
 import psycopg2
+from bs4 import BeautifulSoup
+from flask import Flask, render_template, jsonify
 
 pd.options.display.float_format = '{:,.2f}'.format
 pd.set_option('colheader_justify', 'right')
@@ -646,6 +647,46 @@ def create_app():
             niquel=niquel,
             dolar=dolar,
             data=data)
+
+        response.headers.add("Access-Control-Allow-Origin", '*')
+        return response
+
+    @application.route('/json', methods=['GET'])
+    def json_summary():
+
+        parse.uses_netloc.append("postgres")
+        url = parse.urlparse(os.environ["DATABASE_URL"])
+
+        conn = psycopg2.connect(
+            database=url.path[1:],
+            user=url.username,
+            password=url.password,
+            host=url.hostname,
+            port=url.port
+        )
+
+        query = """
+                    SELECT * FROM cotacao_lme
+                    WHERE cotacao_lme NOTNULL
+                    ORDER BY "Date" DESC LIMIT 40
+                    """
+
+        cotacaoatual = pd.read_sql(query, conn)
+
+        cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                                'Estanho', 'Niquel', 'Dolar']
+
+        df = pd.DataFrame(cotacaoatual)
+
+        df['Data'] = pd.to_datetime(df['Data'], utc=True)
+
+        df = df.set_index(df['Data'])
+
+        df.fillna(method='ffill', inplace=True)
+
+        response = jsonify(df.to_json(orient='records',
+                                      date_format='iso',
+                                      force_ascii=False))
 
         response.headers.add("Access-Control-Allow-Origin", '*')
         return response
