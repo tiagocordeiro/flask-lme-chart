@@ -691,6 +691,7 @@ def create_app():
         response.headers.add("Access-Control-Allow-Origin", '*')
         return response
 
+
     @application.route('/json/v2', methods=['GET'])
     def json_summary_v2():
         periodo_cotacao = periodo_data()
@@ -750,6 +751,7 @@ def create_app():
 
         response.headers.add("Access-Control-Allow-Origin", '*')
         return response
+
 
     def latest_values():
         parse.uses_netloc.append("postgres")
