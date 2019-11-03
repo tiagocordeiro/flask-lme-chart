@@ -20,7 +20,7 @@ psycopg2-binary==2.7.7
 pyasn1==0.4.5
 pycparser==2.19
 pyOpenSSL==19.0.0
-python-dateutil==2.8.0
+python-dateutil==2.8.1
 python-dotenv==0.10.1
 pytz==2018.9
 Quandl==3.4.6
