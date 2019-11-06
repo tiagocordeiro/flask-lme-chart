@@ -25,7 +25,7 @@ python-dotenv==0.10.1
 pytz==2018.9
 Quandl==3.4.6
 requests==2.21.0
-six==1.12.0
+six==1.13.0
 SQLAlchemy==1.2.18
 urllib3==1.24.1
 Werkzeug==0.14.1
