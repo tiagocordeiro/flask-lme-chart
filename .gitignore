@@ -108,3 +108,6 @@ static/semana04.html
 static/semana04media.html
 templates/index-bkp.html
 templates/lme-bkp.html
+
+# local postgres data files
+.pgdata
