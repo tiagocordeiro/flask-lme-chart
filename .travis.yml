@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.6.6"
+  - "3.7.6"
 services:
   postgresql
 addons:
@@ -14,10 +14,9 @@ before_script:
   - python lme.py
 # command to run tests
 script:
-  - pycodestyle lme.py lme/app.py
-  - pyflakes lme.py lme/app.py
+  - pycodestyle .
+  - flake8 .
   - pytest
-#  - flake8 lme/app.py lme.py
 #  - py.test --cov=pytocli tests/
 #  - python -m doctest README.md
 # after_success:

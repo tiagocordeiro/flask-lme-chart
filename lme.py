@@ -2,9 +2,13 @@
 # coding: utf-8
 
 import os
-import quandl
 from urllib import parse
+
+import quandl
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
+
+load_dotenv()
 
 quandl.ApiConfig.api_key = os.environ.get('QUANDL_KEY')
 
@@ -21,9 +25,8 @@ def updateDatabase():
     parse.uses_netloc.append("postgres")
     url = parse.urlparse(os.environ["DATABASE_URL"])
 
-    engine = create_engine('postgresql+psycopg2://' + url.username + ':'
-                           + url.password + '@' + url.hostname + '/'
-                           + url.path[1:])
+    engine = create_engine(
+        'postgresql+psycopg2://' + url.username + ':' + url.password + '@' + url.hostname + '/' + url.path[1:])
 
     connection = engine.connect()
 
