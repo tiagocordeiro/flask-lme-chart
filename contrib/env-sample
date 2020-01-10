@@ -2,3 +2,4 @@ FLASK_APP=lme.app
 QUANDL_KEY=
 DATABASE_URL=postgres://postgres@localhost/travis_ci_db
 FLASK_DEBUG=True
+TZ=America/Sao_Paulo

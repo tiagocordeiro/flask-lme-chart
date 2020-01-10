@@ -227,8 +227,7 @@ def create_app():
             databr = databr[0].split("-")
             data.string = str(databr[2] + "/" + databr[1] + "/" + databr[0])
 
-        media_periodo = df[
-                        periodo.strftime("%Y-%m-%d"):hoje.strftime("%Y-%m-%d")]
+        media_periodo = df[periodo.strftime("%Y-%m-%d"):hoje.strftime("%Y-%m-%d")]
         media_periodo = pd.DataFrame(media_periodo.mean())
         media_periodo = media_periodo.to_html(classes='mediaperiodo')
         media_periodo = media_periodo.replace('<th>0</th>',
@@ -236,9 +235,7 @@ def create_app():
         media_periodo = media_periodo.replace('<th></th>',
                                               '<th>Metais / Dolar</th>')
 
-        media_periodo_hor = df[
-                            periodo.strftime("%Y-%m-%d"):hoje.strftime(
-                                "%Y-%m-%d")]
+        media_periodo_hor = df[periodo.strftime("%Y-%m-%d"):hoje.strftime("%Y-%m-%d")]
         media_periodo_hor = pd.DataFrame(media_periodo_hor.mean())
         media_periodo_hor = pd.pivot_table(media_periodo_hor,
                                            columns=['Cobre', 'Zinco',
@@ -551,8 +548,7 @@ def create_app():
             databr = databr[0].split("-")
             data.string = str(databr[2] + "/" + databr[1] + "/" + databr[0])
 
-        media_periodo = df[
-                        periodo.strftime("%Y-%m-%d"):hoje.strftime("%Y-%m-%d")]
+        media_periodo = df[periodo.strftime("%Y-%m-%d"):hoje.strftime("%Y-%m-%d")]
         media_periodo = pd.DataFrame(media_periodo.mean())
         media_periodo = media_periodo.to_html(classes='mediaperiodo')
         media_periodo = media_periodo.replace('<th>0</th>',
@@ -560,9 +556,7 @@ def create_app():
         media_periodo = media_periodo.replace('<th></th>',
                                               '<th>Metais / Dolar</th>')
 
-        media_periodo_hor = df[
-                            periodo.strftime("%Y-%m-%d"):hoje.strftime(
-                                "%Y-%m-%d")]
+        media_periodo_hor = df[periodo.strftime("%Y-%m-%d"):hoje.strftime("%Y-%m-%d")]
         media_periodo_hor = pd.DataFrame(media_periodo_hor.mean())
         media_periodo_hor = pd.pivot_table(media_periodo_hor,
                                            columns=['Cobre', 'Zinco',

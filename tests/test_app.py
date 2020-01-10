@@ -1,4 +1,7 @@
 from flask import url_for
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def test_status_code_index(client):

@@ -12,4 +12,4 @@ services:
       - POSTGRES_PASSWORD=lmeflask
       - POSTGRES_USER=lmeflask
     ports:
-      - 5434:5434
+      - 5432:5432
