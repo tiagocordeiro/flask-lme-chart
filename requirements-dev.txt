@@ -8,7 +8,7 @@ pytest-flask==1.0.0
 
 # CodeStyle
 pycodestyle==2.5.0
-pyflakes==2.1.1
+pyflakes==2.2.0
 
 # Flake8
 entrypoints==0.3
