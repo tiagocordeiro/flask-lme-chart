@@ -745,6 +745,66 @@ def create_app():
         response.headers.add("Access-Control-Allow-Origin", '*')
         return response
 
+    @application.route('/json/v3', methods=['GET'])
+    def json_summary_v3():
+        periodo_cotacao = periodo_data()
+        hoje = datetime.today()
+        periodo = periodo_cotacao['inicio']
+
+        parse.uses_netloc.append("postgres")
+        url = parse.urlparse(os.environ["DATABASE_URL"])
+
+        conn = psycopg2.connect(
+            database=url.path[1:],
+            user=url.username,
+            password=url.password,
+            host=url.hostname,
+            port=url.port
+        )
+
+        query = """
+                    SELECT *
+                    FROM cotacao_lme
+                    WHERE "Date" BETWEEN %(inicio)s AND %(fim)s
+                    """
+
+        query_params = {'inicio': periodo, 'fim': hoje}
+
+        cotacaoatual = pd.read_sql(query, conn, params=query_params)
+
+        cotacaoatual.columns = ['Data', 'Cobre', 'Zinco', 'Aluminio', 'Chumbo',
+                                'Estanho', 'Niquel', 'Dolar']
+
+        df = pd.DataFrame(cotacaoatual)
+
+        df['Data'] = pd.to_datetime(df['Data'], utc=True)
+
+        df = df.set_index(df['Data'])
+
+        df.fillna(method='ffill', inplace=True)
+
+        cobre = list(df['Cobre'])
+        zinco = list(df['Zinco'])
+        aluminio = list(df['Aluminio'])
+        chumbo = list(df['Chumbo'])
+        estanho = list(df['Estanho'])
+        niquel = list(df['Niquel'])
+        dolar = list(df['Dolar'])
+        data = list(df.index.strftime('%d/%m/%y'))
+
+        response = jsonify(
+            cobre=cobre,
+            zinco=zinco,
+            aluminio=aluminio,
+            chumbo=chumbo,
+            estanho=estanho,
+            niquel=niquel,
+            dolar=dolar,
+            data=data)
+
+        response.headers.add("Access-Control-Allow-Origin", '*')
+        return response
+
     def latest_values():
         parse.uses_netloc.append("postgres")
         url = parse.urlparse(os.environ["DATABASE_URL"])
