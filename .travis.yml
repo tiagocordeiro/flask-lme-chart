@@ -8,7 +8,7 @@ addons:
 # command to install dependencies
 install:
   - cp contrib/env-sample .env
-  - pip install -r requirements-dev.txt
+  - pip install -r requirements-dev.txt codecov
 before_script:
   - psql -c "CREATE DATABASE lme;" -U postgres
   - python lme.py
@@ -16,8 +16,6 @@ before_script:
 script:
   - pycodestyle .
   - flake8 .
-  - pytest
-#  - py.test --cov=pytocli tests/
-#  - python -m doctest README.md
-# after_success:
-#  - coveralls
+  - coverage run -m pytest -v
+after_success:
+  - codecov
