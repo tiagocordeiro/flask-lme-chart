@@ -5,6 +5,7 @@ Cotação London Metal Exchange com Flask
 
 [![Build Status](https://travis-ci.org/tiagocordeiro/flask-lme-chart.svg?branch=master)](https://travis-ci.org/tiagocordeiro/flask-lme-chart)
 [![Updates](https://pyup.io/repos/github/tiagocordeiro/flask-lme-chart/shield.svg)](https://pyup.io/repos/github/tiagocordeiro/flask-lme-chart/)
+[![codecov](https://codecov.io/gh/tiagocordeiro/flask-lme-chart/branch/master/graph/badge.svg)](https://codecov.io/gh/tiagocordeiro/flask-lme-chart)
 [![Python 3](https://pyup.io/repos/github/tiagocordeiro/flask-lme-chart/python-3-shield.svg)](https://pyup.io/repos/github/tiagocordeiro/flask-lme-chart/)
 [![Cobre](https://img.shields.io/badge/LME-Cobre-green.svg)](https://www.quandl.com/data/LME/PR_CU-Copper-Prices)
 [![Zinco](https://img.shields.io/badge/LME-Zinco-green.svg)](https://www.quandl.com/data/LME/PR_ZI-Zinc-Prices)
@@ -21,6 +22,7 @@ https://lme-flask.herokuapp.com/
 /cotacao
 /grafico
 /json/v2
+/json/v3
 /summary
 ```
 
@@ -76,3 +78,6 @@ Verificando o `Code style`
 pycodestyle .
 flake8 .
 ```
+
+#### Thanx
+[ ~ Dependencies scanned by PyUp.io ~ ]
