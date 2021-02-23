@@ -13,7 +13,7 @@ load_dotenv()
 quandl.ApiConfig.api_key = os.environ.get('QUANDL_KEY')
 
 
-def updateDatabase():
+def update_database():
     todo_periodo = quandl.get(["LME/PR_CU.2", "LME/PR_ZI.2", "LME/PR_AL.2",
                                "LME/PR_PB.2", "LME/PR_TN.2", "LME/PR_NI.2",
                                "BUNDESBANK/BBEX3_D_BRL_USD_CA_AB_000"],
@@ -36,4 +36,4 @@ def updateDatabase():
 
 
 if __name__ == '__main__':
-    updateDatabase()
+    update_database()
