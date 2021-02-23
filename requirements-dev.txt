@@ -1,21 +1,13 @@
 # Pytest
-atomicwrites==1.4.0
-attrs==20.2.0
-pluggy==0.13.1
-py==1.9.0
-pytest==6.1.2
-pytest-flask==1.0.0
+pytest-flask==1.1.0
 
 # CodeStyle
 pycodestyle==2.6.0
-pyflakes==2.2.0
 
 # Flake8
-entrypoints==0.3
 flake8==3.8.4
-mccabe==0.6.1
 
 # Coverage
-coverage==5.3
+coverage==5.4
 
 -r requirements.txt
