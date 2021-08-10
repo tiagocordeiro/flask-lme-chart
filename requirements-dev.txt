@@ -1,13 +1,13 @@
 # Pytest
-pytest-flask==1.1.0
+pytest-flask==1.2.0
 
 # CodeStyle
-pycodestyle==2.6.0
+pycodestyle==2.7.0
 
 # Flake8
-flake8==3.8.4
+flake8==3.9.2
 
 # Coverage
-coverage==5.4
+coverage==5.5
 
 -r requirements.txt

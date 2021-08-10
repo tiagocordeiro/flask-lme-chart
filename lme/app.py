@@ -5,7 +5,7 @@ from urllib import parse
 import pandas as pd
 import psycopg2
 from bs4 import BeautifulSoup
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, redirect
 
 pd.options.display.float_format = '{:,.2f}'.format
 pd.set_option('colheader_justify', 'right')
@@ -16,6 +16,8 @@ def create_app():
 
     @application.route('/')
     def index(chartID='chart_ID', chart_type='line', chart_height=350):
+        return redirect("https://lme.gorilaxpress.com/")
+
         qt_semanas = 4
         periodo_cotacao = periodo_data()
         hoje = periodo_cotacao['fim']
@@ -268,6 +270,8 @@ def create_app():
 
     @application.route('/grafico/')
     def grafico(chartID='chart_ID', chart_type='line', chart_height=350):
+        return redirect("https://lme.gorilaxpress.com/grafico/")
+
         periodo_grafico = periodo_data()
         hoje = periodo_grafico['fim']
         periodo = periodo_grafico['inicio']
@@ -337,6 +341,8 @@ def create_app():
     @application.route('/cotacao/')
     def lme_cotacao(chartID='chart_ID', chart_type='line', chart_height=350,
                     colorscheme=None):
+        return redirect("https://lme.gorilaxpress.com/cotacao/")
+
         qt_semanas = 4
         periodo_cotacao = periodo_data()
         hoje = periodo_cotacao['fim']
@@ -590,6 +596,7 @@ def create_app():
 
     @application.route('/summary', methods=['GET'])
     def summary():
+        return redirect("https://lme.gorilaxpress.com/summary/")
 
         parse.uses_netloc.append("postgres")
         url = parse.urlparse(os.environ["DATABASE_URL"])
@@ -647,6 +654,7 @@ def create_app():
 
     @application.route('/json', methods=['GET'])
     def json_summary():
+        return redirect("https://lme.gorilaxpress.com/api/")
 
         parse.uses_netloc.append("postgres")
         url = parse.urlparse(os.environ["DATABASE_URL"])
@@ -687,6 +695,8 @@ def create_app():
 
     @application.route('/json/v2', methods=['GET'])
     def json_summary_v2():
+        return redirect("https://lme.gorilaxpress.com/api/")
+
         periodo_cotacao = periodo_data()
         hoje = periodo_cotacao['fim']
         periodo = periodo_cotacao['inicio']
@@ -747,6 +757,8 @@ def create_app():
 
     @application.route('/json/v3', methods=['GET'])
     def json_summary_v3():
+        return redirect("https://lme.gorilaxpress.com/api/")
+
         periodo_cotacao = periodo_data()
         hoje = datetime.today()
         periodo = periodo_cotacao['inicio']
