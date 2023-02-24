@@ -8,6 +8,6 @@ pycodestyle==2.7.0
 flake8==3.9.2
 
 # Coverage
-coverage==5.5
+coverage==7.2.0
 
 -r requirements.txt
