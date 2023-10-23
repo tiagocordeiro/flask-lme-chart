@@ -1,5 +1,5 @@
 # Pytest
-pytest-flask==1.2.0
+pytest-flask==1.3.0
 
 # CodeStyle
 pycodestyle==2.7.0
