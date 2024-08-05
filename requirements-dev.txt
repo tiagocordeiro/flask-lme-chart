@@ -5,7 +5,7 @@ pytest-flask==1.2.0
 pycodestyle==2.7.0
 
 # Flake8
-flake8==3.9.2
+flake8==7.1.1
 
 # Coverage
 coverage==5.5
